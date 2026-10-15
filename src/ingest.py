@@ -5,6 +5,7 @@ Source: GroupLens Research, University of Minnesota - https://grouplens.org/data
 """
 import argparse
 import json
+import os
 import subprocess
 import zipfile
 from datetime import datetime, timezone
@@ -52,7 +53,7 @@ def main():
     if a.gcs_bucket:
         dest = f"gs://{a.gcs_bucket}/raw/{a.dataset}/"
         subprocess.run(["gsutil", "-m", "cp", *map(str, files), str(target / "_manifest.json"), dest],
-                       check=True, shell=True)
+                       check=True, shell=os.name == "nt")  # gsutil is a .cmd on Windows
         print(f"Uploaded to {dest}")
 
 
