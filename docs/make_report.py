@@ -5,7 +5,8 @@
 import glob
 import json
 import re
-from datetime import date
+import copy
+import io
 from pathlib import Path
 
 import matplotlib
@@ -15,12 +16,23 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from docx import Document
-from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.shared import Inches, Pt
+from docx.enum.section import WD_SECTION
+from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
+from docx.shared import Inches, Mm, Pt, RGBColor
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA, FIG = ROOT / "data", ROOT / "docs" / "figures"
 FIG.mkdir(parents=True, exist_ok=True)
+FRONT_PAGE = ROOT / "docs" / "front_page_template.docx"
+TITLE = "Movie Recommendation System using Big Data Analytics"
+SUBJECT = "Big Data"
+STUDENTS = ["Krishanu Anand (23CSU166)", "Yathansh Jhakar (23CSU352)"]
+BLACK = RGBColor(0, 0, 0)
+FONT = "Times New Roman"
+plt.rcParams.update({"axes.prop_cycle": plt.cycler(color=["#000000", "#555555", "#999999"]),
+                     "font.family": "serif", "axes.spines.top": False, "axes.spines.right": False})
 load = lambda rel: pd.read_parquet(DATA / rel)
 metrics = json.loads(open(glob.glob(str(DATA / "output" / "metrics" / "part-*"))[0]).read())
 kpis, stats, users = load("gold/yearly_kpis").sort_values("rating_year"), load("gold/movie_stats"), load("gold/user_activity")
@@ -42,27 +54,113 @@ def fig(name, draw, w=7, h=3.4):
 
 
 figs = {
-    "yearly": fig("yearly", lambda: (plt.bar(kpis.rating_year, kpis.num_ratings / 1e6, color="#4C78A8"),
+    "yearly": fig("yearly", lambda: (plt.bar(kpis.rating_year, kpis.num_ratings / 1e6, color="#4D4D4D"),
                                      plt.title("Ratings per year (millions)"), plt.xlabel("Year"))),
-    "dist": fig("dist", lambda: (plt.bar(dist.rating.astype(str), dist["count"] / 1e6, color="#F58518"),
+    "dist": fig("dist", lambda: (plt.bar(dist.rating.astype(str), dist["count"] / 1e6, color="#4D4D4D"),
                                  plt.title("Rating distribution (millions)"), plt.xlabel("Rating"))),
-    "genres": fig("genres", lambda: [plt.plot(d.rating_year, d.num_ratings / 1e3, label=g, marker=".")
-                                     for g, d in gt[gt.genre.isin(gt.groupby("genre").num_ratings.sum().nlargest(6).index)]
-                                     .sort_values("rating_year").groupby("genre")]
+    "genres": fig("genres", lambda: [plt.plot(d.rating_year, d.num_ratings / 1e3, label=g, marker="osd^v*"[i % 6],
+                                              linestyle=["-", "--", ":"][i % 3], color=["#000000", "#666666"][i % 2])
+                                     for i, (g, d) in enumerate( gt[gt.genre.isin(gt.groupby("genre").num_ratings.sum().nlargest(6).index)]
+                                     .sort_values("rating_year").groupby("genre"))]
                   + [plt.legend(fontsize=7), plt.title("Ratings per year by genre (thousands, top 6 genres)")]),
     "grid": fig("grid", lambda: (plt.bar([f"rank={g['rank']}\nreg={g['regParam']}" for g in metrics["grid"]],
-                                         [g["val_rmse"] for g in metrics["grid"]], color="#54A24B"),
+                                         [g["val_rmse"] for g in metrics["grid"]], color="#4D4D4D"),
                                  plt.ylim(min(g["val_rmse"] for g in metrics["grid"]) - 0.05,
                                           max(g["val_rmse"] for g in metrics["grid"]) + 0.02),
                                  plt.title("ALS hyper-parameter search (validation RMSE, lower is better)"))),
-    "pred": fig("pred", lambda: (pred.boxplot(column="prediction", by="rating", grid=False), plt.suptitle(""),
+    "pred": fig("pred", lambda: (pred.boxplot(column="prediction", by="rating", grid=False, color="black"), plt.suptitle(""),
                                  plt.title("Predicted vs actual rating (test sample)"), plt.xlabel("Actual rating"),
                                  plt.ylabel("Predicted"))),
 }
 
 doc = Document()
-doc.styles["Normal"].font.name = "Calibri"
-doc.styles["Normal"].font.size = Pt(11)
+sec = doc.sections[0]
+sec.page_width, sec.page_height = Mm(210), Mm(297)  # A4, same as the university front page
+sec.left_margin = sec.right_margin = sec.top_margin = sec.bottom_margin = Inches(1)
+
+
+def plain_style(name, size, bold=False):
+    """Black, single-font style: strips theme fonts and colours from Word's built-in styles."""
+    st = doc.styles[name]
+    st.font.name, st.font.size, st.font.bold, st.font.italic = FONT, Pt(size), bold, False
+    st.font.color.rgb = BLACK
+    rfonts = st.element.get_or_add_rPr().find(qn("w:rFonts"))
+    for attr in [a for a in rfonts.attrib if "Theme" in a]:
+        del rfonts.attrib[attr]
+    rfonts.set(qn("w:eastAsia"), FONT)
+    return st
+
+
+plain_style("Normal", 12).paragraph_format.space_after = Pt(6)
+doc.styles["Normal"].paragraph_format.line_spacing = 1.15
+for name, size in (("Heading 1", 16), ("Heading 2", 14), ("Heading 3", 12)):
+    plain_style(name, size, bold=True).paragraph_format.space_before = Pt(12)
+doc.styles["Heading 1"].paragraph_format.page_break_before = True  # every chapter starts on a new page
+plain_style("List Bullet", 12)
+plain_style("Caption", 11).font.italic = True
+
+
+def add_field(par, instr, placeholder=""):
+    def fld(kind):
+        el = OxmlElement("w:fldChar")
+        el.set(qn("w:fldCharType"), kind)
+        par.add_run()._r.append(el)
+    fld("begin")
+    instr_el = OxmlElement("w:instrText")
+    instr_el.set(qn("xml:space"), "preserve")
+    instr_el.text = f" {instr} "
+    par.add_run()._r.append(instr_el)
+    fld("separate")
+    par.add_run(placeholder)
+    fld("end")
+
+
+def set_text(par, lines, bold=None, size=None):
+    for r in par.runs[1:]:
+        r._r.getparent().remove(r._r)
+    run = par.runs[0]
+    run.text = lines[0]
+    for line in lines[1:]:
+        run.add_break(WD_BREAK.LINE)
+        run.add_text(line)
+    if bold is not None:
+        run.bold = bold
+    if size:
+        run.font.size = Pt(size)
+
+
+def front_page():
+    """Copy the university front page (logo and layout) and fill in its placeholders."""
+    tpl = Document(str(FRONT_PAGE))
+    rid_map = {}
+    for old_rid, part in tpl.part.related_parts.items():
+        if "image" in part.content_type:
+            rid_map[old_rid], _ = doc.part.get_or_add_image(io.BytesIO(part.blob))
+    body_end = doc.element.body.sectPr
+    for p in tpl.paragraphs:
+        el = copy.deepcopy(p._p)
+        for blip in el.iter(qn("a:blip")):
+            blip.set(qn("r:embed"), rid_map.get(blip.get(qn("r:embed")), blip.get(qn("r:embed"))))
+        body_end.addprevious(el)
+    for par in list(doc.paragraphs):
+        text = par.text.strip()
+        if text == "Project name":
+            set_text(par, [TITLE], bold=True, size=16)
+        elif text == "abc":
+            set_text(par, STUDENTS)
+        elif text == "Midterm Evaluation Report":
+            subject = copy.deepcopy(par._p)
+            par._p.addnext(subject)
+            set_text([q for q in doc.paragraphs if q._p is subject][0], [f"Subject: {SUBJECT}"], bold=False)
+
+
+FIGURE_NO = [0]
+
+
+def caption(text):
+    FIGURE_NO[0] += 1
+    p = doc.add_paragraph(f"Figure {FIGURE_NO[0]}: {text}", style="Caption")
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
 
 def fmt(v):
@@ -75,32 +173,70 @@ def fmt(v):
     return str(v)
 
 
+LABELS = {"rank": "Rank", "clean_title": "Title", "release_year": "Year", "num_ratings": "Ratings",
+          "avg_rating": "Avg rating", "weighted_rating": "Weighted rating", "predicted_rating": "Predicted rating",
+          "rating": "Rating", "table": "Table", "check": "Check", "rows_before": "Rows before",
+          "rows_after": "Rows after", "removed": "Removed"}
+
+
+def borders(t):
+    """Plain black single-line borders on every cell edge."""
+    tbl_pr = t._tbl.tblPr
+    el = OxmlElement("w:tblBorders")
+    for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
+        b = OxmlElement(f"w:{edge}")
+        for k, v in (("val", "single"), ("sz", "6"), ("space", "0"), ("color", "000000")):
+            b.set(qn(f"w:{k}"), v)
+        el.append(b)
+    tbl_pr.append(el)
+
+
 def table(df, cols=None):
     df = df[cols] if cols else df
     t = doc.add_table(rows=1, cols=len(df.columns))
-    t.style = "Light Grid Accent 1"
+    t.style = "Table Grid"
+    borders(t)
     for i, c in enumerate(df.columns):
-        t.rows[0].cells[i].text = str(c)
+        t.rows[0].cells[i].paragraphs[0].add_run(LABELS.get(c, str(c))).bold = True
     for row in df.itertuples(index=False):
         cells = t.add_row().cells
-        for i, v in enumerate(row):
-            cells[i].text = fmt(v)
+        for i, (c, v) in enumerate(zip(df.columns, row)):
+            cells[i].text = str(int(v)) if "year" in str(c) and v == v else fmt(v)  # 1994, not 1,994
     doc.add_paragraph()
 
 
-def image(key, caption):
+def image(key, text):
     doc.add_picture(str(figs[key]), width=Inches(6.2))
-    p = doc.add_paragraph(caption)
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.runs[0].italic = True
+    doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
+    caption(text)
 
 
 bullets = lambda items: [doc.add_paragraph(i, style="List Bullet") for i in items]
 n_ratings, n_users, n_movies = int(kpis.num_ratings.sum()), len(users), len(stats)
 
-title = doc.add_heading("Movie Recommendation System using Big Data Analytics", 0)
-doc.add_paragraph(f"Minor Project Report  ·  Krishanu Anand  ·  {date.today():%d %B %Y}")
-doc.add_paragraph("GitHub: https://github.com/anand-krishanu/AttractorField")
+front_page()
+body = doc.add_section(WD_SECTION.NEW_PAGE)  # page numbers start after the front page
+body.footer.is_linked_to_previous = False
+pg = OxmlElement("w:pgNumType")
+pg.set(qn("w:start"), "1")
+body._sectPr.append(pg)
+fp = body.footer.paragraphs[0]
+fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
+add_field(fp, "PAGE", "1")
+
+
+def centered_title(text, before=0):
+    par = doc.add_paragraph()
+    par.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    par.paragraph_format.space_before = Pt(before)
+    run = par.add_run(text)
+    run.bold, run.font.size = True, Pt(16)
+
+
+centered_title("Index")
+add_field(doc.add_paragraph(), 'TOC \\o "1-2" \\h \\z \\u', "Open in Word and update fields to build the index.")
+centered_title("List of Figures", before=18)
+add_field(doc.add_paragraph(), 'TOC \\h \\z \\t "Caption,1"', "Open in Word and update fields to build the list.")
 
 doc.add_heading("Abstract", 1)
 doc.add_paragraph(
@@ -111,6 +247,7 @@ doc.add_paragraph(
     f"predicts ratings with a test RMSE of {metrics['test_rmse']} (vs. {metrics['baseline_rmse_global_mean']} for a "
     "global-mean baseline) and generates a personalised Top-10 list for every user. Results are presented in an "
     "interactive Streamlit dashboard, and the workflow is orchestrated with a runner script and an Airflow DAG.")
+doc.add_paragraph("Source code: https://github.com/anand-krishanu/AttractorField")
 
 doc.add_heading("1. Problem Definition", 1)
 doc.add_paragraph(
@@ -192,9 +329,9 @@ doc.add_paragraph(
 
 doc.add_heading("5. Results & Analysis", 1)
 doc.add_heading("5.1 Exploratory analytics", 2)
-image("yearly", "Figure 1 – Rating volume per year")
-image("dist", "Figure 2 – Distribution of ratings")
-image("genres", "Figure 3 – Genre popularity over time")
+image("yearly", "Rating volume per year")
+image("dist", "Distribution of ratings")
+image("genres", "Genre popularity over time")
 r = dist.set_index("rating")["count"]
 doc.add_paragraph(
     f"Ratings are skewed positive: {r[r.index >= 4].sum() / r.sum():.0%} of ratings are 4 stars or more and whole-star "
@@ -209,7 +346,7 @@ table(top_genre[top_genre.genre == "Drama"].sort_values("rank").head(10),
 doc.add_heading("5.2 Model evaluation", 2)
 table(pd.DataFrame([[g["rank"], g["regParam"], g["val_rmse"]] for g in metrics["grid"]],
                    columns=["rank", "regParam", "validation RMSE"]))
-image("grid", "Figure 4 – Hyper-parameter search")
+image("grid", "ALS hyper-parameter search")
 table(pd.DataFrame([
     ["Best parameters", f"rank={metrics['best_rank']}, regParam={metrics['best_regParam']}"],
     ["Train / Val / Test rows", f"{metrics['train_rows']:,} / {metrics['val_rows']:,} / {metrics['test_rows']:,}"],
@@ -225,7 +362,7 @@ doc.add_paragraph(
     f"are within ~{metrics['test_mae']:.2f} stars of the true rating. Ranking metrics are low in absolute terms, "
     "which is expected for top-10 retrieval from tens of thousands of movies when only held-out test ratings count as "
     "relevant; they serve as a baseline for future improvements.")
-image("pred", "Figure 5 – Predicted vs actual ratings on the test split")
+image("pred", "Predicted vs actual ratings on the test split")
 
 doc.add_heading("5.3 Sample recommendations", 2)
 uid = int(users[(users.num_ratings > 100) & users.userId.isin(recs.userId)].userId.iloc[0])
@@ -252,9 +389,8 @@ table(pd.DataFrame([
 shots = sorted((ROOT / "docs" / "dashboard").glob("*.png"))
 for i, shot in enumerate(shots, 1):
     doc.add_picture(str(shot), width=Inches(6.2))
-    p = doc.add_paragraph(f"Dashboard {i} – {shot.stem.split('_', 1)[1].replace('_', ' ').capitalize()} page")
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.runs[0].italic = True
+    doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
+    caption(f"Dashboard – {shot.stem.split('_', 1)[1].replace('_', ' ').capitalize()} page")
 
 doc.add_heading("7. Cloud execution & orchestration", 1)
 doc.add_paragraph(
@@ -280,7 +416,8 @@ if (evidence / "jobs.txt").exists():
         table(pd.DataFrame([(layer, size) for size, layer in sizes], columns=["GCS layer", "Size"]))
     for shot in sorted((evidence / "screenshots").glob("*.png")):
         doc.add_picture(str(shot), width=Inches(6.2))
-        doc.add_paragraph(shot.stem.replace("_", " ")).alignment = WD_ALIGN_PARAGRAPH.CENTER
+        doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
+        caption("Google Cloud console – " + shot.stem.split("_", 1)[1].replace("_", " "))
 doc.add_paragraph(
     "Development followed a Git feature-branch workflow: each part (setup/ingest, Bronze/Silver, Gold/ML, cloud "
     "orchestration, dashboard/docs) was developed on its own branch and merged through a pull request.")
