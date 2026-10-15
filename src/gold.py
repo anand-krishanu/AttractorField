@@ -48,6 +48,12 @@ def main():
                                .withColumn("segment", F.when(v >= 500, "power").when(v >= 100, "active")
                                            .when(v >= 35, "regular").otherwise("casual")))
 
+    # each user's 10 favourite movies (used to sanity-check recommendations in the dashboard)
+    uw = Window.partitionBy("userId").orderBy(F.desc("rating"), F.desc("rated_at"))
+    tables["user_top_rated"] = (ratings.withColumn("rank", F.row_number().over(uw)).filter("rank <= 10")
+                                .join(movies.select("movieId", "clean_title", "genres"), "movieId")
+                                .select("userId", "rank", "movieId", "clean_title", "genres", "rating"))
+
     tables["rating_distribution"] = ratings.groupBy("rating").count().orderBy("rating")
 
     tables["top_tags"] = (tags.groupBy("tag").agg(F.count("*").alias("uses"), F.countDistinct("movieId").alias("movies"))
