@@ -1,0 +1,41 @@
+rank=10 reg=0.05 val_rmse=0.7998
+rank=10 reg=0.1 val_rmse=0.8139
+rank=20 reg=0.05 val_rmse=0.7913
+rank=20 reg=0.1 val_rmse=0.8115
+{
+  "dataset": "ml-25m",
+  "min_movie_ratings": 50,
+  "movies_in_model": 13176,
+  "train_rows": 17252352,
+  "val_rows": 2462699,
+  "test_rows": 4929877,
+  "grid": [
+    {
+      "rank": 10,
+      "regParam": 0.05,
+      "val_rmse": 0.7998
+    },
+    {
+      "rank": 10,
+      "regParam": 0.1,
+      "val_rmse": 0.8139
+    },
+    {
+      "rank": 20,
+      "regParam": 0.05,
+      "val_rmse": 0.7913
+    },
+    {
+      "rank": 20,
+      "regParam": 0.1,
+      "val_rmse": 0.8115
+    }
+  ],
+  "best_rank": 20,
+  "best_regParam": 0.05,
+  "test_rmse": 0.7874,
+  "test_mae": 0.6088,
+  "baseline_rmse_global_mean": 1.0578,
+  "precision_at_10": 0.0241,
+  "ndcg_at_10": 0.0308
+}

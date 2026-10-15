@@ -96,19 +96,23 @@ with tabs[2]:
 
 with tabs[3]:
     recs, fav = load("output/user_recs_top10"), load("gold/user_top_rated")
-    ids = sorted(recs.userId.unique())
-    uid = st.selectbox("User ID", ids)
-    u = users[users.userId == uid].iloc[0]
-    st.write(f"**{u.num_ratings:,}** ratings · avg **{u.avg_rating:.2f}** · segment **{u.segment}**")
-    l, r = st.columns(2)
-    l.subheader("Their favourite movies")
-    l.dataframe(fav[fav.userId == uid].sort_values("rank")[["clean_title", "rating"]], hide_index=True,
-                use_container_width=True)
-    r.subheader("Top-10 recommendations (unseen)")
-    rr = recs[recs.userId == uid].sort_values("rank").copy()
-    rr["genres"] = rr.genres.apply(lambda g: ", ".join(g) if g is not None else "")
-    r.dataframe(rr[["rank", "clean_title", "release_year", "genres", "predicted_rating"]], hide_index=True,
-                use_container_width=True)
+    ids = set(recs.userId.unique())
+    uid = int(st.number_input(f"User ID (1 – {max(ids):,})", min_value=int(min(ids)), max_value=int(max(ids)),
+                              value=int(min(ids)), step=1))
+    if uid not in ids:
+        st.warning("No recommendations for this user ID.")
+    else:
+        u = users[users.userId == uid].iloc[0]
+        st.write(f"**{u.num_ratings:,}** ratings · avg **{u.avg_rating:.2f}** · segment **{u.segment}**")
+        l, r = st.columns(2)
+        l.subheader("Their favourite movies")
+        l.dataframe(fav[fav.userId == uid].sort_values("rank")[["clean_title", "rating"]], hide_index=True,
+                    use_container_width=True)
+        r.subheader("Top-10 recommendations (unseen)")
+        rr = recs[recs.userId == uid].sort_values("rank").copy()
+        rr["genres"] = rr.genres.apply(lambda g: ", ".join(g) if g is not None else "")
+        r.dataframe(rr[["rank", "clean_title", "release_year", "genres", "predicted_rating"]], hide_index=True,
+                    use_container_width=True)
 
 with tabs[4]:
     if metrics:

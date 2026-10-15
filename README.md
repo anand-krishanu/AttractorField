@@ -45,7 +45,7 @@ Orchestration: run_pipeline.py (local Docker) · scripts/dataproc_run.ps1 (GCP) 
 | Bronze | `src/bronze.py`: explicit schemas, plus `ingest_ts`, `source_file` and `dataset_version` |
 | Silver | `src/silver.py`: nulls, out-of-range ratings, duplicate (user, movie) ratings (keeps the latest, using `row_number`), orphan movieIds, year parsed from the title, genre arrays, normalised tags, links joined. Ratings are partitioned by `rating_year`. Writes `dq_report` |
 | Gold | `src/gold.py`: `movie_stats` (Bayesian weighted rating), `top_movies_by_genre` (`rank()`), `genre_trends` (Spark SQL + `LAG` YoY growth), `user_activity` (segments), `user_top_rated`, `rating_distribution`, `top_tags`, `yearly_kpis` (running total) |
-| ML | `src/train_als.py`: 70/10/20 split, grid over rank {10, 20} × regParam {0.05, 0.1}, refit, test RMSE/MAE against a baseline, precision@10 and NDCG@10. Outputs `user_recs_top10` (unseen only), `similar_movies` (cosine on item factors), `als_model` and `metrics` |
+| ML | `src/train_als.py`: trains only on movies with at least 50 ratings (avoids obscure-title noise), 70/10/20 split, grid over rank {10, 20} × regParam {0.05, 0.1}, refit, test RMSE/MAE against a baseline, precision@10 and NDCG@10. Outputs `user_recs_top10` (unseen only), `similar_movies` (cosine on item factors), `als_model` and `metrics` |
 | Dashboard | `dashboard/app.py`: Trends, Movies & Genres, Users, Recommendations, Model and Data Quality tabs |
 
 ## 4. How to run
@@ -66,7 +66,36 @@ streamlit run dashboard/app.py
 **Airflow:** deploy `dags/movie_reco_dag.py` to Cloud Composer or Airflow 2.x with `apache-airflow-providers-google`, and set the Variables `gcp_project`, `gcp_region` and `gcs_bucket`.
 
 ## 5. Results
-See `docs/report.docx` / `docs/report.pdf` for the full results, the data-quality numbers and dashboard screenshots.
+Results from the full **MovieLens 25M** run on Dataproc:
+
+| Metric | Value |
+|---|---|
+| Ratings / users / movies | 25,000,095 / 162,541 / 59,047 |
+| Movies in model (at least 50 ratings) | 13,176 |
+| Best ALS params | rank 20, regParam 0.05 |
+| **Test RMSE (ALS)** | **0.787** |
+| Test RMSE (global-mean baseline) | 1.058 |
+| Test MAE | 0.61 |
+| Precision@10 / NDCG@10 | 0.024 / 0.031 |
+| Users with a Top-10 list | 162,540 |
+
+ALS cuts RMSE by about 26% compared with the baseline. The full write-up, with the data-quality numbers, charts and cloud evidence, is in [`docs/report.pdf`](docs/report.pdf) (built by `python docs/make_report.py`).
+
+## Cloud execution evidence
+The full 25M pipeline ran on **Google Cloud Dataproc 2.2** (project `movie-reco-bigdata-2026`, region `asia-south1`, 1 × e2-standard-2 master and 2 × e2-highmem-4 workers). The proof is in [`docs/cloud_run_evidence/`](docs/cloud_run_evidence/), regenerated with `python scripts/export_cloud_evidence.py --project <id> --account <email>`:
+- `jobs.txt`: Dataproc job history (job IDs, state, start and end times, durations)
+- `run_full_pipeline.log` and `run_als_rerun.log`: cleaned console logs of the runs
+- `bucket_listing.txt`: GCS bucket size per layer (raw, bronze, silver, gold, output) and the full object listing
+- `train_als_driver_output.txt`: Spark driver output of the final ALS job (tuning grid and metrics)
+- `screenshots/`: GCP console screenshots (Dataproc jobs, bucket, billing)
+
+| Dataproc job | Duration |
+|---|---|
+| ingest (GroupLens to GCS) | ~70 s |
+| bronze | ~190 s |
+| silver | ~260 s |
+| gold | ~245 s |
+| train_als (grid of 4 + refit + recommendations) | ~19 min |
 
 ## 6. Tech stack
 PySpark 3.5 · Spark SQL · Spark MLlib · Google Cloud Storage · Google Cloud Dataproc 2.2 · Apache Airflow · Streamlit · Plotly · Docker

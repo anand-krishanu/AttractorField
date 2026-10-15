@@ -1,0 +1,11 @@
+Dataproc job history - project movie-reco-bigdata-2026, region asia-south1, cluster movie-reco-cluster
+(the ERROR ingest job was the first attempt: Dataproc 2.2 nodes have internal IPs only, so the download from GroupLens failed; fixed by adding Cloud NAT. The second train_als run is the re-run with the >= 50 ratings-per-movie filter.)
+
+job_id                            script        args                                                                             state  start_utc            end_utc   secs
+d12c51a57e004d4a98920387adfe353e  ingest.py     --dataset ml-25m --out /tmp/raw --gcs-bucket movie-reco-bigdata-2026-movie-reco  ERROR  2026-10-15 13:47:11  13:49:39  148 
+177a1681414c4744a72d458e1a29e228  ingest.py     --dataset ml-25m --out /tmp/raw --gcs-bucket movie-reco-bigdata-2026-movie-reco  DONE   2026-10-15 13:50:54  13:52:03  69  
+e02e75a2d56243f2b6ee463717ef5185  bronze.py     --base gs://movie-reco-bigdata-2026-movie-reco --dataset ml-25m                  DONE   2026-10-15 13:52:09  13:55:17  188 
+9cd35a5d07d44b54b44ea90dd13b07c7  silver.py     --base gs://movie-reco-bigdata-2026-movie-reco --dataset ml-25m                  DONE   2026-10-15 13:55:27  13:59:46  259 
+01bdeeb7f0034177a50eedba24703828  gold.py       --base gs://movie-reco-bigdata-2026-movie-reco --dataset ml-25m                  DONE   2026-10-15 13:59:56  14:04:01  245 
+0225b782e48a43509d2af99bcbd7fb94  train_als.py  --base gs://movie-reco-bigdata-2026-movie-reco --dataset ml-25m                  DONE   2026-10-15 14:04:09  14:22:39  1110
+8837fca0182846e8b04c2d18beaf38b1  train_als.py  --base gs://movie-reco-bigdata-2026-movie-reco --dataset ml-25m                  DONE   2026-10-15 14:30:29  14:48:49  1100
