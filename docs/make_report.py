@@ -44,7 +44,7 @@ log = "\n".join(f.read_bytes().replace(b"\x00", b"").decode("utf-8", "ignore")  
 job_times = dict(re.findall(r"(\w+)\.py finished in ([\d,]+)s", log))
 
 
-def fig(name, draw, w=7, h=3.4):
+def fig(name, draw, w=7, h=2.7):
     plt.figure(figsize=(w, h))
     draw()
     plt.tight_layout()
@@ -92,10 +92,9 @@ def plain_style(name, size, bold=False):
 
 
 plain_style("Normal", 12).paragraph_format.space_after = Pt(6)
-doc.styles["Normal"].paragraph_format.line_spacing = 1.15
+doc.styles["Normal"].paragraph_format.line_spacing = 1.1
 for name, size in (("Heading 1", 16), ("Heading 2", 14), ("Heading 3", 12)):
     plain_style(name, size, bold=True).paragraph_format.space_before = Pt(12)
-doc.styles["Heading 1"].paragraph_format.page_break_before = True  # every chapter starts on a new page
 plain_style("List Bullet", 12)
 plain_style("Caption", 11).font.italic = True
 
@@ -157,6 +156,19 @@ def front_page():
 FIGURE_NO = [0]
 
 
+def crop_dashboard(path):
+    """Drop the navigation sidebar and trailing blank space from a dashboard screenshot."""
+    from PIL import Image, ImageChops
+    img = Image.open(path).convert("RGB")
+    img = img.crop((int(img.width * 0.235), 0, img.width, img.height))
+    bbox = ImageChops.difference(img, Image.new("RGB", img.size, (255, 255, 255))).getbbox()
+    if bbox:
+        img = img.crop((max(bbox[0] - 20, 0), max(bbox[1] - 20, 0), min(bbox[2] + 20, img.width), min(bbox[3] + 20, img.height)))
+    out = FIG / f"dash_{path.stem}.png"
+    img.save(out)
+    return out
+
+
 def caption(text):
     FIGURE_NO[0] += 1
     p = doc.add_paragraph(f"Figure {FIGURE_NO[0]}: {text}", style="Caption")
@@ -202,11 +214,19 @@ def table(df, cols=None):
         cells = t.add_row().cells
         for i, (c, v) in enumerate(zip(df.columns, row)):
             cells[i].text = str(int(v)) if "year" in str(c) and v == v else fmt(v)  # 1994, not 1,994
-    doc.add_paragraph()
+    for row in t.rows:  # compact cells: 10 pt, no paragraph spacing
+        for cell in row.cells:
+            for par in cell.paragraphs:
+                par.paragraph_format.space_after = par.paragraph_format.space_before = Pt(0)
+                par.paragraph_format.line_spacing = 1.0
+                for run in par.runs:
+                    run.font.size = Pt(10)
+    gap = doc.add_paragraph()
+    gap.paragraph_format.space_after = Pt(0)
 
 
 def image(key, text):
-    doc.add_picture(str(figs[key]), width=Inches(6.2))
+    doc.add_picture(str(figs[key]), width=Inches(4.8))
     doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
     caption(text)
 
@@ -234,9 +254,10 @@ def centered_title(text, before=0):
 
 
 centered_title("Index")
-add_field(doc.add_paragraph(), 'TOC \\o "1-2" \\h \\z \\u', "Open in Word and update fields to build the index.")
-centered_title("List of Figures", before=18)
+add_field(doc.add_paragraph(), 'TOC \\o "1-1" \\h \\z \\u', "Open in Word and update fields to build the index.")
+centered_title("List of Figures", before=10)
 add_field(doc.add_paragraph(), 'TOC \\h \\z \\t "Caption,1"', "Open in Word and update fields to build the list.")
+doc.add_paragraph().add_run().add_break(WD_BREAK.PAGE)  # the report body starts on its own page
 
 doc.add_heading("Abstract", 1)
 doc.add_paragraph(
@@ -340,7 +361,7 @@ doc.add_paragraph(
     f"showing a long-tail activity distribution; {(users.segment == 'power').mean():.1%} of users are 'power' users "
     "with 500+ ratings.")
 doc.add_heading("Top-rated movies (Drama, by weighted rating)", 3)
-table(top_genre[top_genre.genre == "Drama"].sort_values("rank").head(10),
+table(top_genre[top_genre.genre == "Drama"].sort_values("rank").head(5),
       ["rank", "clean_title", "release_year", "num_ratings", "avg_rating", "weighted_rating"])
 
 doc.add_heading("5.2 Model evaluation", 2)
@@ -386,11 +407,14 @@ table(pd.DataFrame([
     ["Model quality", "Data science", "RMSE vs baseline, tuning results, error analysis"],
     ["Data pipeline", "Data engineering", "Medallion layers, data-quality checks, Dataproc job runtimes"],
 ], columns=["Page", "Audience", "What it answers"]))
-shots = sorted((ROOT / "docs" / "dashboard").glob("*.png"))
+# key pages only, sidebar cropped off so each screenshot reads at a smaller size
+DASH_PAGES = ["1_overview", "4_recommendations", "5_model_quality", "6_data_pipeline"]
+shots = [crop_dashboard(ROOT / "docs" / "dashboard" / f"{n}.png") for n in DASH_PAGES
+         if (ROOT / "docs" / "dashboard" / f"{n}.png").exists()]
 for i, shot in enumerate(shots, 1):
-    doc.add_picture(str(shot), width=Inches(6.2))
+    doc.add_picture(str(shot), width=Inches(5.6))
     doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
-    caption(f"Dashboard – {shot.stem.split('_', 1)[1].replace('_', ' ').capitalize()} page")
+    caption(f"Dashboard – {shot.stem.split('_', 2)[2].replace('_', ' ').capitalize()} page")
 
 doc.add_heading("7. Cloud execution & orchestration", 1)
 doc.add_paragraph(
@@ -414,8 +438,9 @@ if (evidence / "jobs.txt").exists():
     sizes = re.findall(r"^([\d.]+\s*\w+)\s+gs://\S+/(\w+)$", (evidence / "bucket_listing.txt").read_text(encoding="utf-8"), re.M)
     if sizes:
         table(pd.DataFrame([(layer, size) for size, layer in sizes], columns=["GCS layer", "Size"]))
-    for shot in sorted((evidence / "screenshots").glob("*.png")):
-        doc.add_picture(str(shot), width=Inches(6.2))
+    keep = ("jobs_history", "bucket", "Billing")  # the three that prove the run; the rest stay in the repo
+    for shot in [x for x in sorted((evidence / "screenshots").glob("*.png")) if any(k in x.stem for k in keep)]:
+        doc.add_picture(str(shot), width=Inches(5.6))
         doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
         caption("Google Cloud console – " + shot.stem.split("_", 1)[1].replace("_", " "))
 doc.add_paragraph(
