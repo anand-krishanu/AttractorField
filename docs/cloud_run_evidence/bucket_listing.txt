@@ -1,0 +1,494 @@
+Bucket gs://movie-reco-bigdata-2026-movie-reco - size per layer (bytes)
+
+1.08GiB      gs://movie-reco-bigdata-2026-movie-reco/raw
+165.71MiB    gs://movie-reco-bigdata-2026-movie-reco/bronze
+300.84MiB    gs://movie-reco-bigdata-2026-movie-reco/silver
+16.81MiB     gs://movie-reco-bigdata-2026-movie-reco/gold
+26.57MiB     gs://movie-reco-bigdata-2026-movie-reco/output
+18.56kiB     gs://movie-reco-bigdata-2026-movie-reco/code
+
+
+Full listing
+
+gs://movie-reco-bigdata-2026-movie-reco/raw/:
+
+gs://movie-reco-bigdata-2026-movie-reco/raw/ml-25m/:
+       632  2026-10-15T13:51:42Z  gs://movie-reco-bigdata-2026-movie-reco/raw/ml-25m/_manifest.json
+ 435164157  2026-10-15T13:51:58Z  gs://movie-reco-bigdata-2026-movie-reco/raw/ml-25m/genome-scores.csv
+     18103  2026-10-15T13:51:42Z  gs://movie-reco-bigdata-2026-movie-reco/raw/ml-25m/genome-tags.csv
+   1368578  2026-10-15T13:51:42Z  gs://movie-reco-bigdata-2026-movie-reco/raw/ml-25m/links.csv
+   3038099  2026-10-15T13:51:42Z  gs://movie-reco-bigdata-2026-movie-reco/raw/ml-25m/movies.csv
+ 678260987  2026-10-15T13:52:02Z  gs://movie-reco-bigdata-2026-movie-reco/raw/ml-25m/ratings.csv
+  38810332  2026-10-15T13:51:43Z  gs://movie-reco-bigdata-2026-movie-reco/raw/ml-25m/tags.csv
+TOTAL: 7 objects, 1156660888 bytes (1.08GiB)
+gs://movie-reco-bigdata-2026-movie-reco/bronze/:
+
+gs://movie-reco-bigdata-2026-movie-reco/bronze/links/:
+         0  2026-10-15T13:55:09Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/links/
+         0  2026-10-15T13:55:10Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/links/_SUCCESS
+    899085  2026-10-15T13:55:08Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/links/part-00000-9a18f59c-13c3-4d27-aaa8-a1ff74964f5f-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/bronze/movies/:
+         0  2026-10-15T13:54:43Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/movies/
+         0  2026-10-15T13:54:44Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/movies/_SUCCESS
+   1591686  2026-10-15T13:54:41Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/movies/part-00000-85818523-243d-4cf1-84b2-0af589d47369-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/bronze/ratings/:
+         0  2026-10-15T13:54:27Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/ratings/
+         0  2026-10-15T13:54:28Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/ratings/_SUCCESS
+  32520550  2026-10-15T13:54:08Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/ratings/part-00000-f02dc9e7-d717-4ce1-97e9-541eed4f7608-c000.snappy.parquet
+  32241801  2026-10-15T13:54:21Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/ratings/part-00001-f02dc9e7-d717-4ce1-97e9-541eed4f7608-c000.snappy.parquet
+  32432682  2026-10-15T13:54:09Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/ratings/part-00002-f02dc9e7-d717-4ce1-97e9-541eed4f7608-c000.snappy.parquet
+  31073428  2026-10-15T13:54:21Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/ratings/part-00003-f02dc9e7-d717-4ce1-97e9-541eed4f7608-c000.snappy.parquet
+  30941005  2026-10-15T13:54:26Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/ratings/part-00004-f02dc9e7-d717-4ce1-97e9-541eed4f7608-c000.snappy.parquet
+   1918175  2026-10-15T13:54:06Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/ratings/part-00005-f02dc9e7-d717-4ce1-97e9-541eed4f7608-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/bronze/tags/:
+         0  2026-10-15T13:54:57Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/tags/
+         0  2026-10-15T13:54:58Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/tags/_SUCCESS
+   1520794  2026-10-15T13:54:56Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/tags/part-00000-323156b5-fd4a-47ec-88f9-f2f0ec761dcd-c000.snappy.parquet
+   2175472  2026-10-15T13:54:54Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/tags/part-00001-323156b5-fd4a-47ec-88f9-f2f0ec761dcd-c000.snappy.parquet
+   1936269  2026-10-15T13:54:55Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/tags/part-00002-323156b5-fd4a-47ec-88f9-f2f0ec761dcd-c000.snappy.parquet
+   1871423  2026-10-15T13:54:56Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/tags/part-00003-323156b5-fd4a-47ec-88f9-f2f0ec761dcd-c000.snappy.parquet
+   1846985  2026-10-15T13:54:54Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/tags/part-00004-323156b5-fd4a-47ec-88f9-f2f0ec761dcd-c000.snappy.parquet
+    791346  2026-10-15T13:54:54Z  gs://movie-reco-bigdata-2026-movie-reco/bronze/tags/part-00005-323156b5-fd4a-47ec-88f9-f2f0ec761dcd-c000.snappy.parquet
+TOTAL: 22 objects, 173760701 bytes (165.71MiB)
+gs://movie-reco-bigdata-2026-movie-reco/silver/:
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/dq_report/:
+         0  2026-10-15T13:59:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/dq_report/
+         0  2026-10-15T13:59:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/dq_report/_SUCCESS
+      1893  2026-10-15T13:59:38Z  gs://movie-reco-bigdata-2026-movie-reco/silver/dq_report/part-00000-a40446dd-2738-4679-ab47-f80a14d43a3e-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/movies/:
+         0  2026-10-15T13:56:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/movies/
+         0  2026-10-15T13:56:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/movies/_SUCCESS
+   1047844  2026-10-15T13:56:37Z  gs://movie-reco-bigdata-2026-movie-reco/silver/movies/part-00000-6efc8b3d-bf4c-4401-b04e-3805064bed76-c000.snappy.parquet
+   1048009  2026-10-15T13:56:37Z  gs://movie-reco-bigdata-2026-movie-reco/silver/movies/part-00001-6efc8b3d-bf4c-4401-b04e-3805064bed76-c000.snappy.parquet
+   1262781  2026-10-15T13:56:37Z  gs://movie-reco-bigdata-2026-movie-reco/silver/movies/part-00002-6efc8b3d-bf4c-4401-b04e-3805064bed76-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/:
+         0  2026-10-15T13:59:07Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/
+         0  2026-10-15T13:59:08Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/_SUCCESS
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1995/:
+         0  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1995/
+      1255  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1995/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+      1255  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1995/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+      1255  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1995/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1996/:
+         0  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1996/
+   1982091  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1996/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1991460  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1996/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1979632  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1996/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1990042  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1996/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1966834  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1996/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1981656  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1996/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1979915  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1996/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1983760  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1996/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    117167  2026-10-15T13:59:03Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1996/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1997/:
+         0  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1997/
+    917450  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1997/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    919812  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1997/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    913921  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1997/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    921410  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1997/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    920167  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1997/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    921165  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1997/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    925747  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1997/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    919625  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1997/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     52239  2026-10-15T13:59:04Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1997/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1998/:
+         0  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1998/
+    383690  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1998/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    383590  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1998/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    382023  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1998/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    383329  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1998/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    380678  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1998/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    380095  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1998/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    384393  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1998/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    377409  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1998/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     25986  2026-10-15T13:59:04Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1998/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1999/:
+         0  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1999/
+   1412869  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1999/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1421305  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1999/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1416154  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1999/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1422140  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1999/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1412235  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1999/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1416649  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1999/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1422317  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1999/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1407885  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1999/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     89401  2026-10-15T13:59:04Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=1999/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2000/:
+         0  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2000/
+   2208043  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2000/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2220341  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2000/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2206493  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2000/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2225989  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2000/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2210072  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2000/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2202765  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2000/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2225048  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2000/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2206223  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2000/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    152612  2026-10-15T13:59:04Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2000/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2001/:
+         0  2026-10-15T13:58:38Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2001/
+   1446874  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2001/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1457743  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2001/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1454461  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2001/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1457171  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2001/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1449818  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2001/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1451290  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2001/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1460544  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2001/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1446268  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2001/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     93897  2026-10-15T13:59:03Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2001/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2002/:
+         0  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2002/
+   1129646  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2002/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1138296  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2002/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1134829  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2002/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1135482  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2002/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1129809  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2002/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1130563  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2002/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1140166  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2002/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1155186  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2002/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     71864  2026-10-15T13:59:04Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2002/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2003/:
+         0  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2003/
+   1364579  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2003/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1366692  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2003/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1364669  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2003/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1372564  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2003/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1364718  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2003/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1361786  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2003/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1364482  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2003/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1361045  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2003/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     83536  2026-10-15T13:59:04Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2003/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2004/:
+         0  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2004/
+   1542094  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2004/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1551752  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2004/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1540251  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2004/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1549961  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2004/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1542838  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2004/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1547203  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2004/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1552552  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2004/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1542273  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2004/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     93843  2026-10-15T13:59:04Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2004/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2005/:
+         0  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2005/
+   2260389  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2005/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2275359  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2005/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2250042  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2005/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2272010  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2005/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2252233  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2005/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2255343  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2005/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2273435  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2005/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2252740  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2005/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    141563  2026-10-15T13:59:04Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2005/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2006/:
+         0  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2006/
+   1544956  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2006/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1555014  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2006/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1545049  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2006/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1554332  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2006/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1548539  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2006/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1550017  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2006/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1557230  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2006/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1546533  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2006/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     96530  2026-10-15T13:59:04Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2006/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2007/:
+         0  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2007/
+   1408609  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2007/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1418882  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2007/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1410383  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2007/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1420885  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2007/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1408679  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2007/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1412229  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2007/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1423264  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2007/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1415882  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2007/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     82546  2026-10-15T13:59:04Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2007/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2008/:
+         0  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2008/
+   1531827  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2008/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1534943  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2008/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1522327  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2008/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1536875  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2008/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1528601  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2008/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1529461  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2008/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1543088  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2008/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1531025  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2008/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     94671  2026-10-15T13:59:03Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2008/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2009/:
+         0  2026-10-15T13:58:39Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2009/
+   1274212  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2009/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1293894  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2009/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1271729  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2009/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1285206  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2009/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1281802  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2009/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1275085  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2009/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1285183  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2009/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1284824  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2009/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     73780  2026-10-15T13:59:03Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2009/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2010/:
+         0  2026-10-15T13:58:38Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2010/
+   1265347  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2010/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1268230  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2010/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1267984  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2010/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1266583  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2010/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1262577  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2010/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1260407  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2010/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1271102  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2010/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1261898  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2010/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     73254  2026-10-15T13:59:03Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2010/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2011/:
+         0  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2011/
+   1121857  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2011/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1133094  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2011/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1122489  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2011/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1129762  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2011/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1122160  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2011/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1117440  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2011/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1132351  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2011/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1123467  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2011/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     59391  2026-10-15T13:59:05Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2011/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2012/:
+         0  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2012/
+   1052107  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2012/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1056437  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2012/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1043837  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2012/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1056052  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2012/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1049285  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2012/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1053608  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2012/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1059588  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2012/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1048540  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2012/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     56397  2026-10-15T13:59:05Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2012/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2013/:
+         0  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2013/
+    865862  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2013/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    865091  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2013/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    858918  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2013/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    867293  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2013/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    858447  2026-10-15T13:58:43Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2013/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    863110  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2013/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    864725  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2013/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    863462  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2013/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     46571  2026-10-15T13:59:05Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2013/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2014/:
+         0  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2014/
+    793547  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2014/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    802992  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2014/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    800064  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2014/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    807996  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2014/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    800089  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2014/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    795004  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2014/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    804158  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2014/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    795511  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2014/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+     43305  2026-10-15T13:59:05Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2014/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2015/:
+         0  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2015/
+   2284031  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2015/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2296763  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2015/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2276734  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2015/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2299296  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2015/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2279760  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2015/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2291085  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2015/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2298224  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2015/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2290617  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2015/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    144266  2026-10-15T13:59:05Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2015/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2016/:
+         0  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2016/
+   2462153  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2016/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2469810  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2016/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2451593  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2016/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2475449  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2016/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2457502  2026-10-15T13:58:43Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2016/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2452628  2026-10-15T13:58:43Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2016/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2468501  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2016/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2454741  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2016/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    155468  2026-10-15T13:59:06Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2016/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2017/:
+         0  2026-10-15T13:58:40Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2017/
+   2352384  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2017/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2365310  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2017/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2350543  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2017/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2364751  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2017/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2345418  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2017/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2348855  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2017/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2371924  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2017/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   2352208  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2017/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    150151  2026-10-15T13:59:06Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2017/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2018/:
+         0  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2018/
+   1902990  2026-10-15T13:58:43Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2018/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1918744  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2018/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1898179  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2018/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1907919  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2018/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1900121  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2018/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1898693  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2018/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1903825  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2018/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1900022  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2018/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    116428  2026-10-15T13:59:05Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2018/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2019/:
+         0  2026-10-15T13:58:41Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2019/
+   1702178  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2019/part-00000-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1714079  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2019/part-00001-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1710994  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2019/part-00002-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1715358  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2019/part-00003-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1694306  2026-10-15T13:58:43Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2019/part-00004-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1700056  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2019/part-00005-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1714870  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2019/part-00006-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+   1702729  2026-10-15T13:58:42Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2019/part-00007-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+    108626  2026-10-15T13:59:06Z  gs://movie-reco-bigdata-2026-movie-reco/silver/ratings/rating_year=2019/part-00008-e57731c2-c0e2-4222-afd8-8de287b7e9a9.c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/silver/tags/:
+         0  2026-10-15T13:59:25Z  gs://movie-reco-bigdata-2026-movie-reco/silver/tags/
+         0  2026-10-15T13:59:26Z  gs://movie-reco-bigdata-2026-movie-reco/silver/tags/_SUCCESS
+   2460298  2026-10-15T13:59:23Z  gs://movie-reco-bigdata-2026-movie-reco/silver/tags/part-00000-3a4bbb67-1dee-4b21-9e46-d50fe28a4ac7-c000.snappy.parquet
+   2468301  2026-10-15T13:59:23Z  gs://movie-reco-bigdata-2026-movie-reco/silver/tags/part-00001-3a4bbb67-1dee-4b21-9e46-d50fe28a4ac7-c000.snappy.parquet
+   2425657  2026-10-15T13:59:24Z  gs://movie-reco-bigdata-2026-movie-reco/silver/tags/part-00002-3a4bbb67-1dee-4b21-9e46-d50fe28a4ac7-c000.snappy.parquet
+   2419179  2026-10-15T13:59:24Z  gs://movie-reco-bigdata-2026-movie-reco/silver/tags/part-00003-3a4bbb67-1dee-4b21-9e46-d50fe28a4ac7-c000.snappy.parquet
+   2471391  2026-10-15T13:59:24Z  gs://movie-reco-bigdata-2026-movie-reco/silver/tags/part-00004-3a4bbb67-1dee-4b21-9e46-d50fe28a4ac7-c000.snappy.parquet
+   2473975  2026-10-15T13:59:24Z  gs://movie-reco-bigdata-2026-movie-reco/silver/tags/part-00005-3a4bbb67-1dee-4b21-9e46-d50fe28a4ac7-c000.snappy.parquet
+   2427810  2026-10-15T13:59:24Z  gs://movie-reco-bigdata-2026-movie-reco/silver/tags/part-00006-3a4bbb67-1dee-4b21-9e46-d50fe28a4ac7-c000.snappy.parquet
+   2485818  2026-10-15T13:59:24Z  gs://movie-reco-bigdata-2026-movie-reco/silver/tags/part-00007-3a4bbb67-1dee-4b21-9e46-d50fe28a4ac7-c000.snappy.parquet
+TOTAL: 264 objects, 315454170 bytes (300.84MiB)
+gs://movie-reco-bigdata-2026-movie-reco/gold/:
+
+gs://movie-reco-bigdata-2026-movie-reco/gold/genre_trends/:
+         0  2026-10-15T14:02:23Z  gs://movie-reco-bigdata-2026-movie-reco/gold/genre_trends/
+         0  2026-10-15T14:02:24Z  gs://movie-reco-bigdata-2026-movie-reco/gold/genre_trends/_SUCCESS
+      8672  2026-10-15T14:02:21Z  gs://movie-reco-bigdata-2026-movie-reco/gold/genre_trends/part-00000-c0b5d296-89ef-46e6-8ccc-6f0fc0aa8bc5-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/gold/movie_stats/:
+         0  2026-10-15T14:01:47Z  gs://movie-reco-bigdata-2026-movie-reco/gold/movie_stats/
+         0  2026-10-15T14:01:48Z  gs://movie-reco-bigdata-2026-movie-reco/gold/movie_stats/_SUCCESS
+   1797529  2026-10-15T14:01:45Z  gs://movie-reco-bigdata-2026-movie-reco/gold/movie_stats/part-00000-8d74ea00-0b2f-4713-be5b-d1902ccdec5f-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/gold/rating_distribution/:
+         0  2026-10-15T14:03:20Z  gs://movie-reco-bigdata-2026-movie-reco/gold/rating_distribution/
+         0  2026-10-15T14:03:21Z  gs://movie-reco-bigdata-2026-movie-reco/gold/rating_distribution/_SUCCESS
+       864  2026-10-15T14:03:18Z  gs://movie-reco-bigdata-2026-movie-reco/gold/rating_distribution/part-00000-d3defc7a-6441-4975-b522-c0ea9e2f4c72-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/gold/top_movies_by_genre/:
+         0  2026-10-15T14:02:05Z  gs://movie-reco-bigdata-2026-movie-reco/gold/top_movies_by_genre/
+         0  2026-10-15T14:02:05Z  gs://movie-reco-bigdata-2026-movie-reco/gold/top_movies_by_genre/_SUCCESS
+     16425  2026-10-15T14:02:03Z  gs://movie-reco-bigdata-2026-movie-reco/gold/top_movies_by_genre/part-00000-05e0d6e3-8bdf-43b9-83ee-fa4cc1cc0312-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/gold/top_tags/:
+         0  2026-10-15T14:03:34Z  gs://movie-reco-bigdata-2026-movie-reco/gold/top_tags/
+         0  2026-10-15T14:03:35Z  gs://movie-reco-bigdata-2026-movie-reco/gold/top_tags/_SUCCESS
+      2955  2026-10-15T14:03:33Z  gs://movie-reco-bigdata-2026-movie-reco/gold/top_tags/part-00000-ec991620-315d-4f94-8d8b-5858d1afc4d3-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/gold/user_activity/:
+         0  2026-10-15T14:02:40Z  gs://movie-reco-bigdata-2026-movie-reco/gold/user_activity/
+         0  2026-10-15T14:02:40Z  gs://movie-reco-bigdata-2026-movie-reco/gold/user_activity/_SUCCESS
+   4707939  2026-10-15T14:02:38Z  gs://movie-reco-bigdata-2026-movie-reco/gold/user_activity/part-00000-fe2154e9-eb84-47e7-bb16-ffd8b3252224-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/gold/user_top_rated/:
+         0  2026-10-15T14:03:07Z  gs://movie-reco-bigdata-2026-movie-reco/gold/user_top_rated/
+         0  2026-10-15T14:03:08Z  gs://movie-reco-bigdata-2026-movie-reco/gold/user_top_rated/_SUCCESS
+  11087929  2026-10-15T14:03:05Z  gs://movie-reco-bigdata-2026-movie-reco/gold/user_top_rated/part-00000-2f874e91-5479-4830-8590-94aa5dd5a9dd-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/gold/yearly_kpis/:
+         0  2026-10-15T14:03:52Z  gs://movie-reco-bigdata-2026-movie-reco/gold/yearly_kpis/
+         0  2026-10-15T14:03:53Z  gs://movie-reco-bigdata-2026-movie-reco/gold/yearly_kpis/_SUCCESS
+      2692  2026-10-15T14:03:51Z  gs://movie-reco-bigdata-2026-movie-reco/gold/yearly_kpis/part-00000-47c92d1d-ee71-4e17-a29b-772c6b086780-c000.snappy.parquet
+TOTAL: 24 objects, 17625005 bytes (16.81MiB)
+gs://movie-reco-bigdata-2026-movie-reco/output/:
+         0  2026-10-15T14:44:50Z  gs://movie-reco-bigdata-2026-movie-reco/output/
+
+gs://movie-reco-bigdata-2026-movie-reco/output/als_model/:
+
+gs://movie-reco-bigdata-2026-movie-reco/output/als_model/itemFactors/:
+         0  2026-10-15T14:45:35Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/itemFactors/
+         0  2026-10-15T14:45:36Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/itemFactors/_SUCCESS
+     97459  2026-10-15T14:45:29Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/itemFactors/part-00000-7c18a6d6-6c87-4898-afed-a129423ccb6c-c000.snappy.parquet
+     99586  2026-10-15T14:45:29Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/itemFactors/part-00001-7c18a6d6-6c87-4898-afed-a129423ccb6c-c000.snappy.parquet
+     98132  2026-10-15T14:45:29Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/itemFactors/part-00002-7c18a6d6-6c87-4898-afed-a129423ccb6c-c000.snappy.parquet
+     96585  2026-10-15T14:45:29Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/itemFactors/part-00003-7c18a6d6-6c87-4898-afed-a129423ccb6c-c000.snappy.parquet
+     95484  2026-10-15T14:45:29Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/itemFactors/part-00004-7c18a6d6-6c87-4898-afed-a129423ccb6c-c000.snappy.parquet
+    100187  2026-10-15T14:45:29Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/itemFactors/part-00005-7c18a6d6-6c87-4898-afed-a129423ccb6c-c000.snappy.parquet
+     93641  2026-10-15T14:45:29Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/itemFactors/part-00006-7c18a6d6-6c87-4898-afed-a129423ccb6c-c000.snappy.parquet
+    100370  2026-10-15T14:45:29Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/itemFactors/part-00007-7c18a6d6-6c87-4898-afed-a129423ccb6c-c000.snappy.parquet
+     93333  2026-10-15T14:45:33Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/itemFactors/part-00008-7c18a6d6-6c87-4898-afed-a129423ccb6c-c000.snappy.parquet
+    100156  2026-10-15T14:45:33Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/itemFactors/part-00009-7c18a6d6-6c87-4898-afed-a129423ccb6c-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/output/als_model/metadata/:
+         0  2026-10-15T14:45:09Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/metadata/
+         0  2026-10-15T14:45:09Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/metadata/_SUCCESS
+       362  2026-10-15T14:45:07Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/metadata/part-00000
+
+gs://movie-reco-bigdata-2026-movie-reco/output/als_model/userFactors/:
+         0  2026-10-15T14:45:23Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/userFactors/
+         0  2026-10-15T14:45:24Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/userFactors/_SUCCESS
+   1354589  2026-10-15T14:45:16Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/userFactors/part-00000-02fc7a96-c795-4f6a-8e41-5d5b7bcfd5b5-c000.snappy.parquet
+   1354782  2026-10-15T14:45:17Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/userFactors/part-00001-02fc7a96-c795-4f6a-8e41-5d5b7bcfd5b5-c000.snappy.parquet
+   1357018  2026-10-15T14:45:17Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/userFactors/part-00002-02fc7a96-c795-4f6a-8e41-5d5b7bcfd5b5-c000.snappy.parquet
+   1354414  2026-10-15T14:45:17Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/userFactors/part-00003-02fc7a96-c795-4f6a-8e41-5d5b7bcfd5b5-c000.snappy.parquet
+   1355463  2026-10-15T14:45:16Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/userFactors/part-00004-02fc7a96-c795-4f6a-8e41-5d5b7bcfd5b5-c000.snappy.parquet
+   1355375  2026-10-15T14:45:17Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/userFactors/part-00005-02fc7a96-c795-4f6a-8e41-5d5b7bcfd5b5-c000.snappy.parquet
+   1355012  2026-10-15T14:45:17Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/userFactors/part-00006-02fc7a96-c795-4f6a-8e41-5d5b7bcfd5b5-c000.snappy.parquet
+   1355823  2026-10-15T14:45:16Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/userFactors/part-00007-02fc7a96-c795-4f6a-8e41-5d5b7bcfd5b5-c000.snappy.parquet
+   1356192  2026-10-15T14:45:21Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/userFactors/part-00008-02fc7a96-c795-4f6a-8e41-5d5b7bcfd5b5-c000.snappy.parquet
+   1354548  2026-10-15T14:45:21Z  gs://movie-reco-bigdata-2026-movie-reco/output/als_model/userFactors/part-00009-02fc7a96-c795-4f6a-8e41-5d5b7bcfd5b5-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/output/metrics/:
+         0  2026-10-15T14:45:00Z  gs://movie-reco-bigdata-2026-movie-reco/output/metrics/
+         0  2026-10-15T14:45:01Z  gs://movie-reco-bigdata-2026-movie-reco/output/metrics/_SUCCESS
+       523  2026-10-15T14:44:58Z  gs://movie-reco-bigdata-2026-movie-reco/output/metrics/part-00000-77871883-81f5-4de3-b06b-0ec3976ed5c0-c000.txt
+
+gs://movie-reco-bigdata-2026-movie-reco/output/similar_movies/:
+         0  2026-10-15T14:48:43Z  gs://movie-reco-bigdata-2026-movie-reco/output/similar_movies/
+         0  2026-10-15T14:48:44Z  gs://movie-reco-bigdata-2026-movie-reco/output/similar_movies/_SUCCESS
+     75226  2026-10-15T14:48:41Z  gs://movie-reco-bigdata-2026-movie-reco/output/similar_movies/part-00000-ed524f46-8e7c-4ce3-97e4-4b00de6061a8-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/output/test_predictions_sample/:
+         0  2026-10-15T14:45:50Z  gs://movie-reco-bigdata-2026-movie-reco/output/test_predictions_sample/
+         0  2026-10-15T14:45:51Z  gs://movie-reco-bigdata-2026-movie-reco/output/test_predictions_sample/_SUCCESS
+    222732  2026-10-15T14:45:48Z  gs://movie-reco-bigdata-2026-movie-reco/output/test_predictions_sample/part-00000-9154dc8a-63d0-4a07-a630-211090ff0734-c000.snappy.parquet
+
+gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/:
+         0  2026-10-15T14:47:52Z  gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/
+         0  2026-10-15T14:47:52Z  gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/_SUCCESS
+   1627189  2026-10-15T14:47:48Z  gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00000-d703928c-0d25-4221-9fc9-1cc61f53aa10-c000.snappy.parquet
+   1617361  2026-10-15T14:47:50Z  gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00001-d703928c-0d25-4221-9fc9-1cc61f53aa10-c000.snappy.parquet
+   1623713  2026-10-15T14:47:48Z  gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00002-d703928c-0d25-4221-9fc9-1cc61f53aa10-c000.snappy.parquet
+   1616760  2026-10-15T14:47:48Z  gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00003-d703928c-0d25-4221-9fc9-1cc61f53aa10-c000.snappy.parquet
+   1623023  2026-10-15T14:47:48Z  gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00004-d703928c-0d25-4221-9fc9-1cc61f53aa10-c000.snappy.parquet
+   1621334  2026-10-15T14:47:48Z  gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00005-d703928c-0d25-4221-9fc9-1cc61f53aa10-c000.snappy.parquet
+   1623630  2026-10-15T14:47:48Z  gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00006-d703928c-0d25-4221-9fc9-1cc61f53aa10-c000.snappy.parquet
+   1680992  2026-10-15T14:47:48Z  gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00007-d703928c-0d25-4221-9fc9-1cc61f53aa10-c000.snappy.parquet
+TOTAL: 47 objects, 27860994 bytes (26.57MiB)
+gs://movie-reco-bigdata-2026-movie-reco/code/:
+      1236  2026-10-15T14:25:47Z  gs://movie-reco-bigdata-2026-movie-reco/code/bronze.py
+       902  2026-10-15T14:25:47Z  gs://movie-reco-bigdata-2026-movie-reco/code/common.py
+      4543  2026-10-15T14:25:47Z  gs://movie-reco-bigdata-2026-movie-reco/code/gold.py
+      2382  2026-10-15T14:25:47Z  gs://movie-reco-bigdata-2026-movie-reco/code/ingest.py
+      4027  2026-10-15T14:25:47Z  gs://movie-reco-bigdata-2026-movie-reco/code/silver.py
+      5920  2026-10-15T14:25:47Z  gs://movie-reco-bigdata-2026-movie-reco/code/train_als.py
+TOTAL: 6 objects, 19010 bytes (18.56kiB)

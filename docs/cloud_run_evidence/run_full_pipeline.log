@@ -1,0 +1,730 @@
+=== Project + APIs ===
+Account: <account>  Project: movie-reco-bigdata-2026
+Operation "operations/acat.p2-984131097721-f994140e-bdfa-4b44-a822-5066a6088bdc" finished successfully.
+=== Bucket gs://movie-reco-bigdata-2026-movie-reco ===
+Copying file://C:\dev\AttractorField\src\bronze.py to gs://movie-reco-bigdata-2026-movie-reco/code/bronze.py
+Copying file://C:\dev\AttractorField\src\common.py to gs://movie-reco-bigdata-2026-movie-reco/code/common.py
+Copying file://C:\dev\AttractorField\src\gold.py to gs://movie-reco-bigdata-2026-movie-reco/code/gold.py
+Copying file://C:\dev\AttractorField\src\ingest.py to gs://movie-reco-bigdata-2026-movie-reco/code/ingest.py
+Copying file://C:\dev\AttractorField\src\silver.py to gs://movie-reco-bigdata-2026-movie-reco/code/silver.py
+Copying file://C:\dev\AttractorField\src\train_als.py to gs://movie-reco-bigdata-2026-movie-reco/code/train_als.py
+Average throughput: 12.5kiB/s
+=== Cloud NAT (Dataproc 2.2 nodes have internal IPs only; needed to download from GroupLens) ===
+Creating router [movie-reco-router]...
+..........done.
+NAME               REGION       NETWORK
+movie-reco-router  asia-south1  default
+Creating NAT [movie-reco-nat] in router [movie-reco-router]...
+...................................done.
+=== Cluster movie-reco-cluster (1 x e2-standard-2 + 2 x e2-highmem-4, auto-delete after 30 min idle) ===
+=== Job: ingest.py ===
+Job [177a1681414c4744a72d458e1a29e228] submitted.
+Waiting for job output...
+Downloading https://files.grouplens.org/datasets/movielens/ml-25m.zip ...
+  genome-scores.csv    435.2 MB
+  genome-tags.csv      0.0 MB
+  links.csv            1.4 MB
+  movies.csv           3.0 MB
+  ratings.csv        678.3 MB
+  tags.csv            38.8 MB
+Copying file:///tmp/raw/ml-25m/tags.csv [Content-Type=text/csv]...
+/ [0/7 files][    0.0 B/  1.1 GiB]   0% Done
+Copying file:///tmp/raw/ml-25m/_manifest.json [Content-Type=application/json]...
+/ [0/7 files][    0.0 B/  1.1 GiB]   0% Done
+Copying file:///tmp/raw/ml-25m/genome-scores.csv [Content-Type=text/csv]...
+Copying file:///tmp/raw/ml-25m/genome-tags.csv [Content-Type=text/csv]...
+/ [0/7 files][    0.0 B/  1.1 GiB]   0% Done
+/ [0/7 files][    0.0 B/  1.1 GiB]   0% Done
+Copying file:///tmp/raw/ml-25m/movies.csv [Content-Type=text/csv]...
+/ [0/7 files][    0.0 B/  1.1 GiB]   0% Done
+Copying file:///tmp/raw/ml-25m/links.csv [Content-Type=text/csv]...
+/ [0/7 files][    0.0 B/  1.1 GiB]   0% Done
+Copying file:///tmp/raw/ml-25m/ratings.csv [Content-Type=text/csv]...
+/ [0/7 files][    0.0 B/  1.1 GiB]   0% Done
+==> NOTE: You are uploading one or more large file(s), which would run
+significantly faster if you enable parallel composite uploads. This
+feature can be enabled by editing the
+"parallel_composite_upload_threshold" value in your .boto
+configuration file. However, note that if you do this large files will
+be uploaded as `composite objects
+<https://cloud.google.com/storage/docs/composite-objects>`_,which
+means that any user who downloads such objects will need to have a
+compiled crcmod installed (see "gsutil help crcmod"). This is because
+without a compiled crcmod, computing checksums on composite objects is
+so slow that gsutil disables downloads of composite objects.
+/ [1/7 files][  632.0 B/  1.1 GiB]   0% Done
+/ [2/7 files][ 10.1 MiB/  1.1 GiB]   0% Done
+-
+- [3/7 files][ 22.2 MiB/  1.1 GiB]   2% Done
+- [4/7 files][ 32.3 MiB/  1.1 GiB]   2% Done
+\
+\ [5/7 files][ 60.0 MiB/  1.1 GiB]   5% Done
+|
+| [5/7 files][118.1 MiB/  1.1 GiB]  10% Done
+/
+-
+- [5/7 files][182.8 MiB/  1.1 GiB]  16% Done
+\
+|
+| [5/7 files][230.5 MiB/  1.1 GiB]  20% Done
+/
+/ [5/7 files][274.6 MiB/  1.1 GiB]  24% Done
+-
+\
+\ [5/7 files][326.1 MiB/  1.1 GiB]  29% Done
+|
+/
+/ [5/7 files][381.8 MiB/  1.1 GiB]  34% Done
+-
+- [5/7 files][440.1 MiB/  1.1 GiB]  39% Done
+\
+|
+| [5/7 files][499.4 MiB/  1.1 GiB]  45% Done
+/
+-
+- [5/7 files][568.5 MiB/  1.1 GiB]  51% Done
+\
+\ [5/7 files][615.1 MiB/  1.1 GiB]  55% Done  57.7 MiB/s ETA 00:00:08
+|
+/
+/ [5/7 files][671.3 MiB/  1.1 GiB]  60% Done  57.7 MiB/s ETA 00:00:07
+-
+\
+\ [5/7 files][725.2 MiB/  1.1 GiB]  65% Done  56.9 MiB/s ETA 00:00:07
+|
+| [5/7 files][768.0 MiB/  1.1 GiB]  69% Done  53.5 MiB/s ETA 00:00:06
+/
+-
+- [5/7 files][821.9 MiB/  1.1 GiB]  74% Done  50.6 MiB/s ETA 00:00:06
+\
+|
+| [5/7 files][871.6 MiB/  1.1 GiB]  79% Done  51.1 MiB/s ETA 00:00:05
+| [6/7 files][875.7 MiB/  1.1 GiB]  79% Done  51.0 MiB/s ETA 00:00:04
+/
+/ [6/7 files][934.0 MiB/  1.1 GiB]  84% Done  51.6 MiB/s ETA 00:00:03
+-
+\
+\ [6/7 files][ 1002 MiB/  1.1 GiB]  90% Done  54.7 MiB/s ETA 00:00:02
+|
+/
+/ [6/7 files][  1.0 GiB/  1.1 GiB]  95% Done  56.7 MiB/s ETA 00:00:01
+-
+- [7/7 files][  1.1 GiB/  1.1 GiB] 100% Done  55.7 MiB/s ETA 00:00:00
+Operation completed over 7 objects/1.1 GiB.
+Uploaded to gs://movie-reco-bigdata-2026-movie-reco/raw/ml-25m/
+Job [177a1681414c4744a72d458e1a29e228] finished successfully.
+done: true
+driverControlFilesUri: gs://movie-reco-bigdata-2026-movie-reco/google-cloud-dataproc-metainfo/fdfa6384-8a42-45a0-84e3-03e10ea45167/jobs/177a1681414c4744a72d458e1a29e228/
+driverOutputResourceUri: gs://movie-reco-bigdata-2026-movie-reco/google-cloud-dataproc-metainfo/fdfa6384-8a42-45a0-84e3-03e10ea45167/jobs/177a1681414c4744a72d458e1a29e228/driveroutput
+jobUuid: 7c34095c-94b6-3977-a5bd-ccb53388f5f9
+placement:
+  clusterName: movie-reco-cluster
+  clusterUuid: fdfa6384-8a42-45a0-84e3-03e10ea45167
+pysparkJob:
+  args:
+  - --dataset
+  - ml-25m
+  - --out
+  - /tmp/raw
+  - --gcs-bucket
+  - movie-reco-bigdata-2026-movie-reco
+  mainPythonFileUri: gs://movie-reco-bigdata-2026-movie-reco/code/ingest.py
+  pythonFileUris:
+  - gs://movie-reco-bigdata-2026-movie-reco/code/common.py
+reference:
+  jobId: 177a1681414c4744a72d458e1a29e228
+  projectId: movie-reco-bigdata-2026
+status:
+  state: DONE
+  stateStartTime: '2026-10-15T13:52:03.758656Z'
+statusHistory:
+- state: PENDING
+  stateStartTime: '2026-10-15T13:50:54.652218Z'
+- state: SETUP_DONE
+  stateStartTime: '2026-10-15T13:50:54.850466Z'
+- details: Agent reported job success
+  state: RUNNING
+  stateStartTime: '2026-10-15T13:50:55.487034Z'
+ingest.py finished in 75s
+=== Job: bronze.py ===
+Job [e02e75a2d56243f2b6ee463717ef5185] submitted.
+Waiting for job output...
+26/10/15 13:52:43 INFO SparkEnv: Registering MapOutputTracker
+26/10/15 13:52:44 INFO SparkEnv: Registering BlockManagerMaster
+26/10/15 13:52:44 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/10/15 13:52:45 INFO SparkEnv: Registering OutputCommitCoordinator
+26/10/15 13:52:47 INFO MetricsConfig: Loaded properties from hadoop-metrics2.properties
+26/10/15 13:52:47 INFO MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+26/10/15 13:52:47 INFO MetricsSystemImpl: google-hadoop-file-system metrics system started
+26/10/15 13:52:49 INFO DataprocSparkPlugin: Registered 188 driver metrics
+26/10/15 13:52:53 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at
+movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal./10.160.0.4:8032
+26/10/15 13:52:54 INFO AHSProxy: Connecting to Application History server at
+movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal./10.160.0.4:10200
+26/10/15 13:52:57 INFO Configuration: resource-types.xml not found
+26/10/15 13:52:57 INFO ResourceUtils: Unable to find 'resource-types.xml'.
+26/10/15 13:53:01 INFO YarnClientImpl: Submitted application application_1792071881814_0001
+26/10/15 13:53:04 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at
+movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal./10.160.0.4:8030
+26/10/15 13:53:09 INFO RequestTracker: Detected high latency for [url=https://storage.googleapis.com/storage/v1/b/datap
+roc-temp-asia-south1-984131097721-xr2ozmfe/o?delimiter=/&fields=items(bucket,name,timeCreated,updated,generation,metage
+neration,size,contentType,contentEncoding,md5Hash,crc32c,metadata),prefixes,nextPageToken&includeFoldersAsPrefixes=fals
+e&includeTrailingDelimiter=true&maxResults=1&prefix=fdfa6384-8a42-45a0-84e3-03e10ea45167/spark-job-history/;
+invocationId=gl-java/11.0.30 gdcl/2.1.1 linux/6.1.0 gccl-invocation-id/902d5984]. durationMs=396; method=GET;
+thread=gcsfs-misc-0 [CONTEXT ratelimit_period="10 SECONDS" ]
+26/10/15 13:53:10 INFO GhfsGlobalStorageStatistics: Detected potential high latency for operation
+gcs_metadata_request. latencyMs=794; previousMaxLatencyMs=0; operationCount=1; context=[url=https://storage.googleapis.
+com/storage/v1/b/dataproc-temp-asia-south1-984131097721-xr2ozmfe/o/fdfa6384-8a42-45a0-84e3-03e10ea45167%2Fspark-job-his
+tory?fields=bucket,name,timeCreated,updated,generation,metageneration,size,contentType,contentEncoding,md5Hash,crc32c,m
+etadata; invocationId=gl-java/11.0.30 gdcl/2.1.1 linux/6.1.0 gccl-invocation-id/902d5984]; thread=Thread-4
+26/10/15 13:53:10 INFO GhfsGlobalStorageStatistics: Detected potential high latency for operation op_get_file_status.
+latencyMs=2758; previousMaxLatencyMs=0; operationCount=1;
+context=gs://dataproc-temp-asia-south1-984131097721-xr2ozmfe/fdfa6384-8a42-45a0-84e3-03e10ea45167/spark-job-history;
+thread=Thread-4
+26/10/15 13:53:10 INFO GhfsGlobalStorageStatistics: periodic connector metrics:
+{gcs_api_client_non_found_response_count=1, gcs_api_client_side_error_count=1, gcs_api_time=1189,
+gcs_api_total_request_count=2, gcs_connector_time=2758, gcs_list_file_request=1, gcs_list_file_request_duration=395,
+gcs_list_file_request_max=395, gcs_list_file_request_mean=395, gcs_list_file_request_min=395, gcs_metadata_request=1,
+gcs_metadata_request_duration=794, gcs_metadata_request_max=794, gcs_metadata_request_mean=794,
+gcs_metadata_request_min=794, gs_filesystem_create=3, gs_filesystem_initialize=2, op_get_file_status=1,
+op_get_file_status_duration=2758, op_get_file_status_max=2758, op_get_file_status_mean=2758,
+op_get_file_status_min=2758, uptimeSeconds=36} [CONTEXT ratelimit_period="5 MINUTES" ]
+26/10/15 13:53:10 INFO GoogleCloudStorageImpl: Ignoring exception of type GoogleJsonResponseException; verified object
+already exists with desired state.
+26/10/15 13:53:10 INFO GhfsGlobalStorageStatistics: Detected potential high latency for operation op_mkdirs.
+latencyMs=651; previousMaxLatencyMs=0; operationCount=1;
+context=gs://dataproc-temp-asia-south1-984131097721-xr2ozmfe/fdfa6384-8a42-45a0-84e3-03e10ea45167/spark-job-history;
+thread=Thread-4
+26/10/15 13:53:11 INFO GhfsGlobalStorageStatistics: Detected potential high latency for operation op_create.
+latencyMs=1015; previousMaxLatencyMs=0; operationCount=1; context=gs://dataproc-temp-asia-south1-984131097721-xr2ozmfe/
+fdfa6384-8a42-45a0-84e3-03e10ea45167/spark-job-history/application_1792071881814_0001.inprogress; thread=Thread-4
+26/10/15 13:53:13 INFO GhfsGlobalStorageStatistics: Detected potential high latency for operation op_hflush.
+latencyMs=1110; previousMaxLatencyMs=0; operationCount=1; context=gs://dataproc-temp-asia-south1-984131097721-xr2ozmfe/
+fdfa6384-8a42-45a0-84e3-03e10ea45167/spark-job-history/application_1792071881814_0001.inprogress; thread=Thread-4
+26/10/15 13:53:14 INFO GoogleHadoopOutputStream: hflush(): No-op due to rate limit (RateLimiter[stableRate=0.2qps]):
+readers will *not* yet see flushed data for gs://dataproc-temp-asia-south1-984131097721-xr2ozmfe/fdfa6384-8a42-45a0-84e
+3-03e10ea45167/spark-job-history/application_1792071881814_0001.inprogress [CONTEXT ratelimit_period="1 MINUTES" ]
+[bronze.ratings] rows=25,000,095
+root
+ |-- userId: integer (nullable = true)
+ |-- movieId: integer (nullable = true)
+ |-- rating: double (nullable = true)
+ |-- timestamp: long (nullable = true)
+ |-- ingest_ts: timestamp (nullable = true)
+ |-- source_file: string (nullable = true)
+ |-- dataset_version: string (nullable = true)
+[bronze.movies] rows=62,423
+root
+ |-- movieId: integer (nullable = true)
+ |-- title: string (nullable = true)
+ |-- genres: string (nullable = true)
+ |-- ingest_ts: timestamp (nullable = true)
+ |-- source_file: string (nullable = true)
+ |-- dataset_version: string (nullable = true)
+[bronze.tags] rows=1,093,360
+root
+ |-- userId: integer (nullable = true)
+ |-- movieId: integer (nullable = true)
+ |-- tag: string (nullable = true)
+ |-- timestamp: long (nullable = true)
+ |-- ingest_ts: timestamp (nullable = true)
+ |-- source_file: string (nullable = true)
+ |-- dataset_version: string (nullable = true)
+[bronze.links] rows=62,423
+root
+ |-- movieId: integer (nullable = true)
+ |-- imdbId: string (nullable = true)
+ |-- tmdbId: integer (nullable = true)
+ |-- ingest_ts: timestamp (nullable = true)
+ |-- source_file: string (nullable = true)
+ |-- dataset_version: string (nullable = true)
+Job [e02e75a2d56243f2b6ee463717ef5185] finished successfully.
+done: true
+driverControlFilesUri: gs://movie-reco-bigdata-2026-movie-reco/google-cloud-dataproc-metainfo/fdfa6384-8a42-45a0-84e3-03e10ea45167/jobs/e02e75a2d56243f2b6ee463717ef5185/
+driverOutputResourceUri: gs://movie-reco-bigdata-2026-movie-reco/google-cloud-dataproc-metainfo/fdfa6384-8a42-45a0-84e3-03e10ea45167/jobs/e02e75a2d56243f2b6ee463717ef5185/driveroutput
+jobUuid: 844fa494-f9d3-3f29-887a-1b3c93c04f61
+placement:
+  clusterName: movie-reco-cluster
+  clusterUuid: fdfa6384-8a42-45a0-84e3-03e10ea45167
+pysparkJob:
+  args:
+  - --base
+  - gs://movie-reco-bigdata-2026-movie-reco
+  - --dataset
+  - ml-25m
+  mainPythonFileUri: gs://movie-reco-bigdata-2026-movie-reco/code/bronze.py
+  pythonFileUris:
+  - gs://movie-reco-bigdata-2026-movie-reco/code/common.py
+reference:
+  jobId: e02e75a2d56243f2b6ee463717ef5185
+  projectId: movie-reco-bigdata-2026
+status:
+  state: DONE
+  stateStartTime: '2026-10-15T13:55:17.794261Z'
+statusHistory:
+- state: PENDING
+  stateStartTime: '2026-10-15T13:52:09.891035Z'
+- state: SETUP_DONE
+  stateStartTime: '2026-10-15T13:52:10.088949Z'
+- details: Agent reported job success
+  state: RUNNING
+  stateStartTime: '2026-10-15T13:52:10.653336Z'
+yarnApplications:
+- memoryMbSeconds: '4899466'
+  name: movie-reco-bronze
+  progress: 1.0
+  state: FINISHED
+  trackingUrl: http://movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal.:8088/proxy/application_1792071881814_0001/
+  vcoreSeconds: '691'
+bronze.py finished in 197s
+=== Job: silver.py ===
+Job [9cd35a5d07d44b54b44ea90dd13b07c7] submitted.
+Waiting for job output...
+26/10/15 13:55:45 INFO SparkEnv: Registering MapOutputTracker
+26/10/15 13:55:45 INFO SparkEnv: Registering BlockManagerMaster
+26/10/15 13:55:45 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/10/15 13:55:45 INFO SparkEnv: Registering OutputCommitCoordinator
+26/10/15 13:55:46 INFO MetricsConfig: Loaded properties from hadoop-metrics2.properties
+26/10/15 13:55:46 INFO MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+26/10/15 13:55:46 INFO MetricsSystemImpl: google-hadoop-file-system metrics system started
+26/10/15 13:55:47 INFO DataprocSparkPlugin: Registered 188 driver metrics
+26/10/15 13:55:48 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at
+movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal./10.160.0.4:8032
+26/10/15 13:55:48 INFO AHSProxy: Connecting to Application History server at
+movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal./10.160.0.4:10200
+26/10/15 13:55:49 INFO Configuration: resource-types.xml not found
+26/10/15 13:55:49 INFO ResourceUtils: Unable to find 'resource-types.xml'.
+26/10/15 13:55:51 INFO YarnClientImpl: Submitted application application_1792071881814_0002
+26/10/15 13:55:52 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at
+movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal./10.160.0.4:8030
+26/10/15 13:55:54 INFO RequestTracker: Detected high latency for [url=https://storage.googleapis.com/storage/v1/b/datap
+roc-temp-asia-south1-984131097721-xr2ozmfe/o/fdfa6384-8a42-45a0-84e3-03e10ea45167%2Fspark-job-history?fields=bucket,nam
+e,timeCreated,updated,generation,metageneration,size,contentType,contentEncoding,md5Hash,crc32c,metadata;
+invocationId=gl-java/11.0.30 gdcl/2.1.1 linux/6.1.0 gccl-invocation-id/e1507e0e]. durationMs=585; method=GET;
+thread=Thread-4 [CONTEXT ratelimit_period="10 SECONDS" ]
+26/10/15 13:55:55 INFO GoogleCloudStorageImpl: Ignoring exception of type GoogleJsonResponseException; verified object
+already exists with desired state.
+26/10/15 13:55:57 INFO GoogleHadoopOutputStream: hflush(): No-op due to rate limit (RateLimiter[stableRate=0.2qps]):
+readers will *not* yet see flushed data for gs://dataproc-temp-asia-south1-984131097721-xr2ozmfe/fdfa6384-8a42-45a0-84e
+3-03e10ea45167/spark-job-history/application_1792071881814_0002.inprogress [CONTEXT ratelimit_period="1 MINUTES" ]
+[dq] movies   null id/title                      62,423 ->       62,423 (removed 0)
+[dq] movies   duplicate movieId                  62,423 ->       62,423 (removed 0)
+[dq] ratings  null fields                    25,000,095 ->   25,000,095 (removed 0)
+[dq] ratings  invalid rating/timestamp       25,000,095 ->   25,000,095 (removed 0)
+[dq] ratings  duplicate user-movie           25,000,095 ->   25,000,095 (removed 0)
+[dq] ratings  orphan movieId                 25,000,095 ->   25,000,095 (removed 0)
+[dq] tags     null/empty tag                  1,093,360 ->    1,093,360 (removed 0)
+[dq] tags     duplicate tag                   1,093,360 ->    1,093,359 (removed 1)
+Job [9cd35a5d07d44b54b44ea90dd13b07c7] finished successfully.
+done: true
+driverControlFilesUri: gs://movie-reco-bigdata-2026-movie-reco/google-cloud-dataproc-metainfo/fdfa6384-8a42-45a0-84e3-03e10ea45167/jobs/9cd35a5d07d44b54b44ea90dd13b07c7/
+driverOutputResourceUri: gs://movie-reco-bigdata-2026-movie-reco/google-cloud-dataproc-metainfo/fdfa6384-8a42-45a0-84e3-03e10ea45167/jobs/9cd35a5d07d44b54b44ea90dd13b07c7/driveroutput
+jobUuid: ab91a072-b7eb-3211-a9e1-97fba12edbb9
+placement:
+  clusterName: movie-reco-cluster
+  clusterUuid: fdfa6384-8a42-45a0-84e3-03e10ea45167
+pysparkJob:
+  args:
+  - --base
+  - gs://movie-reco-bigdata-2026-movie-reco
+  - --dataset
+  - ml-25m
+  mainPythonFileUri: gs://movie-reco-bigdata-2026-movie-reco/code/silver.py
+  pythonFileUris:
+  - gs://movie-reco-bigdata-2026-movie-reco/code/common.py
+reference:
+  jobId: 9cd35a5d07d44b54b44ea90dd13b07c7
+  projectId: movie-reco-bigdata-2026
+status:
+  state: DONE
+  stateStartTime: '2026-10-15T13:59:46.051803Z'
+statusHistory:
+- state: PENDING
+  stateStartTime: '2026-10-15T13:55:27.228043Z'
+- state: SETUP_DONE
+  stateStartTime: '2026-10-15T13:55:27.419598Z'
+- details: Agent reported job success
+  state: RUNNING
+  stateStartTime: '2026-10-15T13:55:27.972134Z'
+yarnApplications:
+- memoryMbSeconds: '11037272'
+  name: movie-reco-silver
+  progress: 1.0
+  state: FINISHED
+  trackingUrl: http://movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal.:8088/proxy/application_1792071881814_0002/
+  vcoreSeconds: '1558'
+silver.py finished in 269s
+=== Job: gold.py ===
+Job [01bdeeb7f0034177a50eedba24703828] submitted.
+Waiting for job output...
+26/10/15 14:00:12 INFO SparkEnv: Registering MapOutputTracker
+26/10/15 14:00:12 INFO SparkEnv: Registering BlockManagerMaster
+26/10/15 14:00:12 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/10/15 14:00:12 INFO SparkEnv: Registering OutputCommitCoordinator
+26/10/15 14:00:13 INFO MetricsConfig: Loaded properties from hadoop-metrics2.properties
+26/10/15 14:00:13 INFO MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+26/10/15 14:00:13 INFO MetricsSystemImpl: google-hadoop-file-system metrics system started
+26/10/15 14:00:14 INFO DataprocSparkPlugin: Registered 188 driver metrics
+26/10/15 14:00:15 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at
+movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal./10.160.0.4:8032
+26/10/15 14:00:15 INFO AHSProxy: Connecting to Application History server at
+movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal./10.160.0.4:10200
+26/10/15 14:00:15 INFO Configuration: resource-types.xml not found
+26/10/15 14:00:15 INFO ResourceUtils: Unable to find 'resource-types.xml'.
+26/10/15 14:00:17 INFO YarnClientImpl: Submitted application application_1792071881814_0003
+26/10/15 14:00:18 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at
+movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal./10.160.0.4:8030
+26/10/15 14:00:20 INFO RequestTracker: Detected high latency for [url=https://storage.googleapis.com/storage/v1/b/datap
+roc-temp-asia-south1-984131097721-xr2ozmfe/o/fdfa6384-8a42-45a0-84e3-03e10ea45167%2Fspark-job-history?fields=bucket,nam
+e,timeCreated,updated,generation,metageneration,size,contentType,contentEncoding,md5Hash,crc32c,metadata;
+invocationId=gl-java/11.0.30 gdcl/2.1.1 linux/6.1.0 gccl-invocation-id/9e449580]. durationMs=561; method=GET;
+thread=Thread-4 [CONTEXT ratelimit_period="10 SECONDS" ]
+26/10/15 14:00:21 INFO GoogleCloudStorageImpl: Ignoring exception of type GoogleJsonResponseException; verified object
+already exists with desired state.
+26/10/15 14:00:23 INFO GoogleHadoopOutputStream: hflush(): No-op due to rate limit (RateLimiter[stableRate=0.2qps]):
+readers will *not* yet see flushed data for gs://dataproc-temp-asia-south1-984131097721-xr2ozmfe/fdfa6384-8a42-45a0-84e
+3-03e10ea45167/spark-job-history/application_1792071881814_0003.inprogress [CONTEXT ratelimit_period="1 MINUTES" ]
+26/10/15 14:00:43 WARN SimpleTableFunctionRegistry: The function read_files replaced a previously registered function.
+26/10/15 14:00:46 WARN SimpleTableFunctionRegistry: The function read_files replaced a previously registered function.
+global mean C=3.534, min-votes m=340
+[gold.movie_stats] rows=59,047
+root
+ |-- movieId: integer (nullable = true)
+ |-- num_ratings: long (nullable = true)
+ |-- avg_rating: double (nullable = true)
+ |-- std_rating: double (nullable = true)
+ |-- weighted_rating: double (nullable = true)
+ |-- clean_title: string (nullable = true)
+ |-- release_year: integer (nullable = true)
+ |-- genres: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+[gold.top_movies_by_genre] rows=380
+root
+ |-- movieId: integer (nullable = true)
+ |-- num_ratings: long (nullable = true)
+ |-- avg_rating: double (nullable = true)
+ |-- std_rating: double (nullable = true)
+ |-- weighted_rating: double (nullable = true)
+ |-- clean_title: string (nullable = true)
+ |-- release_year: integer (nullable = true)
+ |-- genre: string (nullable = true)
+ |-- rank: integer (nullable = true)
+[gold.genre_trends] rows=460
+root
+ |-- genre: string (nullable = true)
+ |-- rating_year: integer (nullable = true)
+ |-- num_ratings: long (nullable = true)
+ |-- avg_rating: double (nullable = true)
+ |-- yoy_growth_pct: decimal(27,2) (nullable = true)
+[gold.user_activity] rows=162,541
+root
+ |-- userId: integer (nullable = true)
+ |-- num_ratings: long (nullable = true)
+ |-- avg_rating: double (nullable = true)
+ |-- first_rating: timestamp (nullable = true)
+ |-- last_rating: timestamp (nullable = true)
+ |-- segment: string (nullable = true)
+[gold.user_top_rated] rows=1,625,410
+root
+ |-- userId: integer (nullable = true)
+ |-- rank: integer (nullable = true)
+ |-- movieId: integer (nullable = true)
+ |-- clean_title: string (nullable = true)
+ |-- genres: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+ |-- rating: double (nullable = true)
+[gold.rating_distribution] rows=10
+root
+ |-- rating: double (nullable = true)
+ |-- count: long (nullable = true)
+[gold.top_tags] rows=100
+root
+ |-- tag: string (nullable = true)
+ |-- uses: long (nullable = true)
+ |-- movies: long (nullable = true)
+26/10/15 14:03:38 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition,
+this can cause serious performance degradation.
+26/10/15 14:03:38 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition,
+this can cause serious performance degradation.
+26/10/15 14:03:38 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition,
+this can cause serious performance degradation.
+26/10/15 14:03:38 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition,
+this can cause serious performance degradation.
+26/10/15 14:03:38 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition,
+this can cause serious performance degradation.
+26/10/15 14:03:43 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition,
+this can cause serious performance degradation.
+26/10/15 14:03:43 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition,
+this can cause serious performance degradation.
+26/10/15 14:03:44 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition,
+this can cause serious performance degradation.
+26/10/15 14:03:44 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition,
+this can cause serious performance degradation.
+26/10/15 14:03:44 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition,
+this can cause serious performance degradation.
+26/10/15 14:03:44 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition,
+this can cause serious performance degradation.
+[gold.yearly_kpis] rows=25
+root
+ |-- rating_year: integer (nullable = true)
+ |-- num_ratings: long (nullable = true)
+ |-- active_users: long (nullable = true)
+ |-- movies_rated: long (nullable = true)
+ |-- avg_rating: double (nullable = true)
+ |-- cumulative_ratings: long (nullable = true)
+Job [01bdeeb7f0034177a50eedba24703828] finished successfully.
+done: true
+driverControlFilesUri: gs://movie-reco-bigdata-2026-movie-reco/google-cloud-dataproc-metainfo/fdfa6384-8a42-45a0-84e3-03e10ea45167/jobs/01bdeeb7f0034177a50eedba24703828/
+driverOutputResourceUri: gs://movie-reco-bigdata-2026-movie-reco/google-cloud-dataproc-metainfo/fdfa6384-8a42-45a0-84e3-03e10ea45167/jobs/01bdeeb7f0034177a50eedba24703828/driveroutput
+jobUuid: 3e13133b-900b-3c87-86c7-403fdbb1ec75
+placement:
+  clusterName: movie-reco-cluster
+  clusterUuid: fdfa6384-8a42-45a0-84e3-03e10ea45167
+pysparkJob:
+  args:
+  - --base
+  - gs://movie-reco-bigdata-2026-movie-reco
+  - --dataset
+  - ml-25m
+  mainPythonFileUri: gs://movie-reco-bigdata-2026-movie-reco/code/gold.py
+  pythonFileUris:
+  - gs://movie-reco-bigdata-2026-movie-reco/code/common.py
+reference:
+  jobId: 01bdeeb7f0034177a50eedba24703828
+  projectId: movie-reco-bigdata-2026
+status:
+  state: DONE
+  stateStartTime: '2026-10-15T14:04:01.321275Z'
+statusHistory:
+- state: PENDING
+  stateStartTime: '2026-10-15T13:59:56.126718Z'
+- state: SETUP_DONE
+  stateStartTime: '2026-10-15T13:59:56.266398Z'
+- details: Agent reported job success
+  state: RUNNING
+  stateStartTime: '2026-10-15T13:59:56.827405Z'
+yarnApplications:
+- memoryMbSeconds: '11349107'
+  name: movie-reco-gold
+  progress: 1.0
+  state: FINISHED
+  trackingUrl: http://movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal.:8088/proxy/application_1792071881814_0003/
+  vcoreSeconds: '1602'
+gold.py finished in 253s
+=== Job: train_als.py ===
+Job [0225b782e48a43509d2af99bcbd7fb94] submitted.
+Waiting for job output...
+26/10/15 14:04:31 INFO SparkEnv: Registering MapOutputTracker
+26/10/15 14:04:32 INFO SparkEnv: Registering BlockManagerMaster
+26/10/15 14:04:32 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/10/15 14:04:32 INFO SparkEnv: Registering OutputCommitCoordinator
+26/10/15 14:04:33 INFO MetricsConfig: Loaded properties from hadoop-metrics2.properties
+26/10/15 14:04:33 INFO MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+26/10/15 14:04:33 INFO MetricsSystemImpl: google-hadoop-file-system metrics system started
+26/10/15 14:04:34 INFO DataprocSparkPlugin: Registered 188 driver metrics
+26/10/15 14:04:35 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at
+movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal./10.160.0.4:8032
+26/10/15 14:04:35 INFO AHSProxy: Connecting to Application History server at
+movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal./10.160.0.4:10200
+26/10/15 14:04:36 INFO Configuration: resource-types.xml not found
+26/10/15 14:04:36 INFO ResourceUtils: Unable to find 'resource-types.xml'.
+26/10/15 14:04:37 INFO YarnClientImpl: Submitted application application_1792071881814_0004
+26/10/15 14:04:38 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at
+movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal./10.160.0.4:8030
+26/10/15 14:04:41 INFO RequestTracker: Detected high latency for [url=https://storage.googleapis.com/storage/v1/b/datap
+roc-temp-asia-south1-984131097721-xr2ozmfe/o/fdfa6384-8a42-45a0-84e3-03e10ea45167%2Fspark-job-history?fields=bucket,nam
+e,timeCreated,updated,generation,metageneration,size,contentType,contentEncoding,md5Hash,crc32c,metadata;
+invocationId=gl-java/11.0.30 gdcl/2.1.1 linux/6.1.0 gccl-invocation-id/fac9eb0b]. durationMs=586; method=GET;
+thread=Thread-4 [CONTEXT ratelimit_period="10 SECONDS" ]
+26/10/15 14:04:41 INFO GoogleCloudStorageImpl: Ignoring exception of type GoogleJsonResponseException; verified object
+already exists with desired state.
+26/10/15 14:04:44 INFO GoogleHadoopOutputStream: hflush(): No-op due to rate limit (RateLimiter[stableRate=0.2qps]):
+readers will *not* yet see flushed data for gs://dataproc-temp-asia-south1-984131097721-xr2ozmfe/fdfa6384-8a42-45a0-84e
+3-03e10ea45167/spark-job-history/application_1792071881814_0004.inprogress [CONTEXT ratelimit_period="1 MINUTES" ]
+26/10/15 14:05:04 WARN SimpleTableFunctionRegistry: The function read_files replaced a previously registered function.
+26/10/15 14:05:09 WARN SimpleTableFunctionRegistry: The function read_files replaced a previously registered function.
+26/10/15 14:05:09 WARN SimpleTableFunctionRegistry: The function read_files replaced a previously registered function.
+26/10/15 14:05:09 WARN SimpleTableFunctionRegistry: The function read_files replaced a previously registered function.
+rank=10 reg=0.05 val_rmse=0.8018
+rank=10 reg=0.1 val_rmse=0.8152
+rank=20 reg=0.05 val_rmse=0.7940
+rank=20 reg=0.1 val_rmse=0.8133
+26/10/15 14:16:50 WARN SimpleTableFunctionRegistry: The function read_files replaced a previously registered function.
+{
+  "dataset": "ml-25m",
+  "train_rows": 17500843,
+  "val_rows": 2498010,
+  "test_rows": 5001242,
+  "grid": [
+    {
+      "rank": 10,
+      "regParam": 0.05,
+      "val_rmse": 0.8018
+    },
+    {
+      "rank": 10,
+      "regParam": 0.1,
+      "val_rmse": 0.8152
+    },
+    {
+      "rank": 20,
+      "regParam": 0.05,
+      "val_rmse": 0.794
+    },
+    {
+      "rank": 20,
+      "regParam": 0.1,
+      "val_rmse": 0.8133
+    }
+  ],
+  "best_rank": 20,
+  "best_regParam": 0.05,
+  "test_rmse": 0.7894,
+  "test_mae": 0.6094,
+  "baseline_rmse_global_mean": 1.0606,
+  "precision_at_10": 0.0,
+  "ndcg_at_10": 0.0
+}
+Job [0225b782e48a43509d2af99bcbd7fb94] finished successfully.
+done: true
+driverControlFilesUri: gs://movie-reco-bigdata-2026-movie-reco/google-cloud-dataproc-metainfo/fdfa6384-8a42-45a0-84e3-03e10ea45167/jobs/0225b782e48a43509d2af99bcbd7fb94/
+driverOutputResourceUri: gs://movie-reco-bigdata-2026-movie-reco/google-cloud-dataproc-metainfo/fdfa6384-8a42-45a0-84e3-03e10ea45167/jobs/0225b782e48a43509d2af99bcbd7fb94/driveroutput
+jobUuid: 37c9af48-b3ae-35dd-b52b-76fd0879edfb
+placement:
+  clusterName: movie-reco-cluster
+  clusterUuid: fdfa6384-8a42-45a0-84e3-03e10ea45167
+pysparkJob:
+  args:
+  - --base
+  - gs://movie-reco-bigdata-2026-movie-reco
+  - --dataset
+  - ml-25m
+  mainPythonFileUri: gs://movie-reco-bigdata-2026-movie-reco/code/train_als.py
+  pythonFileUris:
+  - gs://movie-reco-bigdata-2026-movie-reco/code/common.py
+reference:
+  jobId: 0225b782e48a43509d2af99bcbd7fb94
+  projectId: movie-reco-bigdata-2026
+status:
+  state: DONE
+  stateStartTime: '2026-10-15T14:22:39.564827Z'
+statusHistory:
+- state: PENDING
+  stateStartTime: '2026-10-15T14:04:09.802832Z'
+- state: SETUP_DONE
+  stateStartTime: '2026-10-15T14:04:09.936488Z'
+- details: Agent reported job success
+  state: RUNNING
+  stateStartTime: '2026-10-15T14:04:10.340228Z'
+yarnApplications:
+- memoryMbSeconds: '59527130'
+  name: movie-reco-als
+  progress: 1.0
+  state: FINISHED
+  trackingUrl: http://movie-reco-cluster-m.asia-south1-c.c.movie-reco-bigdata-2026.internal.:8088/proxy/application_1792071881814_0004/
+  vcoreSeconds: '8414'
+train_als.py finished in 1,121s
+=== Download results to .\data for the dashboard ===
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/genre_trends/_SUCCESS to
+file://C:\dev\AttractorField\data\gold\genre_trends\_SUCCESS
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/genre_trends/part-00000-c0b5d296-89ef-46e6-8ccc-6f0fc0aa8bc5-c000.
+snappy.parquet to
+file://C:\dev\AttractorField\data\gold\genre_trends\part-00000-c0b5d296-89ef-46e6-8ccc-6f0fc0aa8bc5-c000.snappy.parquet
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/movie_stats/_SUCCESS to
+file://C:\dev\AttractorField\data\gold\movie_stats\_SUCCESS
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/movie_stats/part-00000-8d74ea00-0b2f-4713-be5b-d1902ccdec5f-c000.s
+nappy.parquet to
+file://C:\dev\AttractorField\data\gold\movie_stats\part-00000-8d74ea00-0b2f-4713-be5b-d1902ccdec5f-c000.snappy.parquet
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/rating_distribution/_SUCCESS to
+file://C:\dev\AttractorField\data\gold\rating_distribution\_SUCCESS
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/rating_distribution/part-00000-d3defc7a-6441-4975-b522-c0ea9e2f4c7
+2-c000.snappy.parquet to file://C:\dev\AttractorField\data\gold\rating_distribution\part-00000-d3defc7a-6441-4975-b522-
+c0ea9e2f4c72-c000.snappy.parquet
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/top_movies_by_genre/_SUCCESS to
+file://C:\dev\AttractorField\data\gold\top_movies_by_genre\_SUCCESS
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/top_movies_by_genre/part-00000-05e0d6e3-8bdf-43b9-83ee-fa4cc1cc031
+2-c000.snappy.parquet to file://C:\dev\AttractorField\data\gold\top_movies_by_genre\part-00000-05e0d6e3-8bdf-43b9-83ee-
+fa4cc1cc0312-c000.snappy.parquet
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/top_tags/_SUCCESS to
+file://C:\dev\AttractorField\data\gold\top_tags\_SUCCESS
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/top_tags/part-00000-ec991620-315d-4f94-8d8b-5858d1afc4d3-c000.snap
+py.parquet to
+file://C:\dev\AttractorField\data\gold\top_tags\part-00000-ec991620-315d-4f94-8d8b-5858d1afc4d3-c000.snappy.parquet
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/user_activity/_SUCCESS to
+file://C:\dev\AttractorField\data\gold\user_activity\_SUCCESS
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/user_activity/part-00000-fe2154e9-eb84-47e7-bb16-ffd8b3252224-c000
+.snappy.parquet to file://C:\dev\AttractorField\data\gold\user_activity\part-00000-fe2154e9-eb84-47e7-bb16-ffd8b3252224
+-c000.snappy.parquet
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/user_top_rated/_SUCCESS to
+file://C:\dev\AttractorField\data\gold\user_top_rated\_SUCCESS
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/user_top_rated/part-00000-2f874e91-5479-4830-8590-94aa5dd5a9dd-c00
+0.snappy.parquet to file://C:\dev\AttractorField\data\gold\user_top_rated\part-00000-2f874e91-5479-4830-8590-94aa5dd5a9
+dd-c000.snappy.parquet
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/yearly_kpis/_SUCCESS to
+file://C:\dev\AttractorField\data\gold\yearly_kpis\_SUCCESS
+Copying gs://movie-reco-bigdata-2026-movie-reco/gold/yearly_kpis/part-00000-47c92d1d-ee71-4e17-a29b-772c6b086780-c000.s
+nappy.parquet to
+file://C:\dev\AttractorField\data\gold\yearly_kpis\part-00000-47c92d1d-ee71-4e17-a29b-772c6b086780-c000.snappy.parquet
+Average throughput: 8.9MiB/s
+Copying gs://movie-reco-bigdata-2026-movie-reco/silver/dq_report/_SUCCESS to
+file://C:\dev\AttractorField\data\silver\dq_report\_SUCCESS
+Copying gs://movie-reco-bigdata-2026-movie-reco/silver/dq_report/part-00000-a40446dd-2738-4679-ab47-f80a14d43a3e-c000.s
+nappy.parquet to
+file://C:\dev\AttractorField\data\silver\dq_report\part-00000-a40446dd-2738-4679-ab47-f80a14d43a3e-c000.snappy.parquet
+Average throughput: 260.0kiB/s
+Copying gs://movie-reco-bigdata-2026-movie-reco/output/metrics/_SUCCESS to
+file://C:\dev\AttractorField\data\output\metrics\_SUCCESS
+Copying
+gs://movie-reco-bigdata-2026-movie-reco/output/metrics/part-00000-c85f43ff-d80f-4dd1-89a1-c210b4320234-c000.txt to
+file://C:\dev\AttractorField\data\output\metrics\part-00000-c85f43ff-d80f-4dd1-89a1-c210b4320234-c000.txt
+Average throughput: 2.4kiB/s
+Copying gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/_SUCCESS to
+file://C:\dev\AttractorField\data\output\user_recs_top10\_SUCCESS
+Copying gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00000-4b784176-ac2e-4487-b754-ea1aa160bcc4-
+c000.snappy.parquet to file://C:\dev\AttractorField\data\output\user_recs_top10\part-00000-4b784176-ac2e-4487-b754-ea1a
+a160bcc4-c000.snappy.parquet
+Copying gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00001-4b784176-ac2e-4487-b754-ea1aa160bcc4-
+c000.snappy.parquet to file://C:\dev\AttractorField\data\output\user_recs_top10\part-00001-4b784176-ac2e-4487-b754-ea1a
+a160bcc4-c000.snappy.parquet
+Copying gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00002-4b784176-ac2e-4487-b754-ea1aa160bcc4-
+c000.snappy.parquet to file://C:\dev\AttractorField\data\output\user_recs_top10\part-00002-4b784176-ac2e-4487-b754-ea1a
+a160bcc4-c000.snappy.parquet
+Copying gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00003-4b784176-ac2e-4487-b754-ea1aa160bcc4-
+c000.snappy.parquet to file://C:\dev\AttractorField\data\output\user_recs_top10\part-00003-4b784176-ac2e-4487-b754-ea1a
+a160bcc4-c000.snappy.parquet
+Copying gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00004-4b784176-ac2e-4487-b754-ea1aa160bcc4-
+c000.snappy.parquet to file://C:\dev\AttractorField\data\output\user_recs_top10\part-00004-4b784176-ac2e-4487-b754-ea1a
+a160bcc4-c000.snappy.parquet
+Copying gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00005-4b784176-ac2e-4487-b754-ea1aa160bcc4-
+c000.snappy.parquet to file://C:\dev\AttractorField\data\output\user_recs_top10\part-00005-4b784176-ac2e-4487-b754-ea1a
+a160bcc4-c000.snappy.parquet
+Copying gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00006-4b784176-ac2e-4487-b754-ea1aa160bcc4-
+c000.snappy.parquet to file://C:\dev\AttractorField\data\output\user_recs_top10\part-00006-4b784176-ac2e-4487-b754-ea1a
+a160bcc4-c000.snappy.parquet
+Copying gs://movie-reco-bigdata-2026-movie-reco/output/user_recs_top10/part-00007-4b784176-ac2e-4487-b754-ea1aa160bcc4-
+c000.snappy.parquet to file://C:\dev\AttractorField\data\output\user_recs_top10\part-00007-4b784176-ac2e-4487-b754-ea1a
+a160bcc4-c000.snappy.parquet
+Average throughput: 8.0MiB/s
+Copying gs://movie-reco-bigdata-2026-movie-reco/output/similar_movies/_SUCCESS to
+file://C:\dev\AttractorField\data\output\similar_movies\_SUCCESS
+Copying gs://movie-reco-bigdata-2026-movie-reco/output/similar_movies/part-00000-55d39dfc-4ff6-4e8a-981f-715558126d38-c
+000.snappy.parquet to file://C:\dev\AttractorField\data\output\similar_movies\part-00000-55d39dfc-4ff6-4e8a-981f-715558
+126d38-c000.snappy.parquet
+Average throughput: 412.7kiB/s
+Copying gs://movie-reco-bigdata-2026-movie-reco/output/test_predictions_sample/_SUCCESS to
+file://C:\dev\AttractorField\data\output\test_predictions_sample\_SUCCESS
+Copying gs://movie-reco-bigdata-2026-movie-reco/output/test_predictions_sample/part-00000-b78ab78d-9926-4038-8fdd-33070
+fdbe6a3-c000.snappy.parquet to file://C:\dev\AttractorField\data\output\test_predictions_sample\part-00000-b78ab78d-992
+6-4038-8fdd-33070fdbe6a3-c000.snappy.parquet
+Average throughput: 634.4kiB/s
+=== Deleting cluster ===
+Waiting on operation
+[projects/movie-reco-bigdata-2026/regions/asia-south1/operations/4a8d94bb-8185-31f5-9d1e-c6a2642be009].
+Waiting for cluster deletion operation...
+...................................done.
+Deleted
+[https://dataproc.googleapis.com/v1/projects/movie-reco-bigdata-2026/regions/asia-south1/clusters/movie-reco-cluster].
+Deleted
+[https://www.googleapis.com/compute/v1/projects/movie-reco-bigdata-2026/regions/asia-south1/routers/movie-reco-router].
+Done. Results in gs://movie-reco-bigdata-2026-movie-reco and .\data
+exit=0

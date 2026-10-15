@@ -11,6 +11,7 @@ from pyspark.sql import functions as F
 from common import get_args, get_spark, path
 
 SEED = 42
+MIN_MOVIE_RATINGS = 50
 
 
 def als(rank, reg):
@@ -22,7 +23,11 @@ def main():
     a = get_args("ALS training")
     spark = get_spark("movie-reco-als")
     out = lambda t: path(a.base, "output", t)
-    ratings = spark.read.parquet(path(a.base, "silver", "ratings")).select("userId", "movieId", "rating").cache()
+    all_ratings = spark.read.parquet(path(a.base, "silver", "ratings")).select("userId", "movieId", "rating")
+    # Movies with very few ratings get unreliable factors and flood every top-10 list, so the model is
+    # trained (and recommends) only among movies with enough ratings - standard practice for explicit ALS.
+    known = all_ratings.groupBy("movieId").count().filter(f"count >= {MIN_MOVIE_RATINGS}").select("movieId")
+    ratings = all_ratings.join(known, "movieId", "left_semi").cache()
     movies = spark.read.parquet(path(a.base, "silver", "movies")).select("movieId", "clean_title", "release_year", "genres")
     train, val, test = [d.cache() for d in ratings.randomSplit([0.7, 0.1, 0.2], seed=SEED)]
     rmse = RegressionEvaluator(metricName="rmse", labelCol="rating", predictionCol="prediction")
@@ -52,7 +57,8 @@ def main():
     rank_eval = lambda metric: RankingEvaluator(metricName=metric, k=10).evaluate(ranked)
 
     metrics = {
-        "dataset": a.dataset, "train_rows": train.count(), "val_rows": val.count(), "test_rows": test.count(),
+        "dataset": a.dataset, "min_movie_ratings": MIN_MOVIE_RATINGS,
+        "movies_in_model": known.count(), "train_rows": train.count(), "val_rows": val.count(), "test_rows": test.count(),
         "grid": grid, "best_rank": best["rank"], "best_regParam": best["regParam"],
         "test_rmse": round(rmse.evaluate(pred), 4),
         "test_mae": round(RegressionEvaluator(metricName="mae", labelCol="rating").evaluate(pred), 4),
@@ -70,14 +76,15 @@ def main():
     w = Window.partitionBy("userId").orderBy(F.desc("predicted_rating"))
     (model.recommendForAllUsers(40)
      .select("userId", F.explode("recommendations").alias("r"))
-     .select("userId", F.col("r.movieId").alias("movieId"), F.round("r.rating", 3).alias("predicted_rating"))
-     .join(ratings, ["userId", "movieId"], "left_anti")
+     .select("userId", F.col("r.movieId").alias("movieId"),
+             F.round(F.least(F.lit(5.0), "r.rating"), 3).alias("predicted_rating"))  # clip to the rating scale
+     .join(all_ratings, ["userId", "movieId"], "left_anti")
      .withColumn("rank", F.row_number().over(w)).filter("rank <= 10")
      .join(movies, "movieId")
      .write.mode("overwrite").parquet(out("user_recs_top10")))
 
     # 4) item-item similarity (cosine on ALS item factors) for the 300 most-rated movies
-    popular = ratings.groupBy("movieId").count().filter("count >= 50")
+    popular = ratings.groupBy("movieId").count()
     f = model.itemFactors.join(popular.select(F.col("movieId").alias("id")), "id")
     top = popular.orderBy(F.desc("count")).limit(300).select(F.col("movieId").alias("id"))
     dot = "aggregate(zip_with(a.features, b.features, (x, y) -> x * y), 0D, (s, v) -> s + v)"
