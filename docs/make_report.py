@@ -28,6 +28,7 @@ FIG.mkdir(parents=True, exist_ok=True)
 FRONT_PAGE = ROOT / "docs" / "front_page_template.docx"
 TITLE = "Movie Recommendation System using Big Data Analytics"
 SUBJECT = "Big Data"
+REPO_URL = "https://github.com/anand-krishanu/AttractorField"
 STUDENTS = ["Krishanu Anand (23CSU166)", "Yathansh Jhakar (23CSU352)"]
 BLACK = RGBColor(0, 0, 0)
 FONT = "Times New Roman"
@@ -128,6 +129,41 @@ def set_text(par, lines, bold=None, size=None):
         run.font.size = Pt(size)
 
 
+def repo_line(after):
+    """Boxed, clickable GitHub link on the front page so the repository is easy to find."""
+    from docx.opc.constants import RELATIONSHIP_TYPE as RT
+    from docx.text.paragraph import Paragraph
+    el = OxmlElement("w:p")
+    after._p.addnext(el)
+    par = Paragraph(el, after._parent)
+    par.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    par.paragraph_format.space_before = Pt(14)
+    bdr = OxmlElement("w:pBdr")
+    for edge in ("top", "left", "bottom", "right"):
+        b = OxmlElement(f"w:{edge}")
+        for k, v in (("val", "single"), ("sz", "8"), ("space", "4"), ("color", "000000")):
+            b.set(qn(f"w:{k}"), v)
+        bdr.append(b)
+    par._p.get_or_add_pPr().append(bdr)
+    par.add_run("GitHub repository").bold = True
+    par.add_run().add_break(WD_BREAK.LINE)
+    link = OxmlElement("w:hyperlink")
+    link.set(qn("r:id"), doc.part.relate_to(REPO_URL, RT.HYPERLINK, is_external=True))
+    run = OxmlElement("w:r")
+    rpr = OxmlElement("w:rPr")
+    for tag, val in (("w:b", None), ("w:u", "single"), ("w:color", "000000")):
+        e = OxmlElement(tag)
+        if val:
+            e.set(qn("w:val"), val)
+        rpr.append(e)
+    run.append(rpr)
+    t = OxmlElement("w:t")
+    t.text = REPO_URL
+    run.append(t)
+    link.append(run)
+    par._p.append(link)
+
+
 def front_page():
     """Copy the university front page (logo and layout) and fill in its placeholders."""
     tpl = Document(str(FRONT_PAGE))
@@ -147,6 +183,7 @@ def front_page():
             set_text(par, [TITLE], bold=True, size=16)
         elif text == "abc":
             set_text(par, STUDENTS)
+            repo_line(par)
         elif text == "Midterm Evaluation Report":
             subject = copy.deepcopy(par._p)
             par._p.addnext(subject)
