@@ -46,7 +46,7 @@ Orchestration: run_pipeline.py (local Docker) · scripts/dataproc_run.ps1 (GCP) 
 | Silver | `src/silver.py`: nulls, out-of-range ratings, duplicate (user, movie) ratings (keeps the latest, using `row_number`), orphan movieIds, year parsed from the title, genre arrays, normalised tags, links joined. Ratings are partitioned by `rating_year`. Writes `dq_report` |
 | Gold | `src/gold.py`: `movie_stats` (Bayesian weighted rating), `top_movies_by_genre` (`rank()`), `genre_trends` (Spark SQL + `LAG` YoY growth), `user_activity` (segments), `user_top_rated`, `rating_distribution`, `top_tags`, `yearly_kpis` (running total) |
 | ML | `src/train_als.py`: trains only on movies with at least 50 ratings (avoids obscure-title noise), 70/10/20 split, grid over rank {10, 20} × regParam {0.05, 0.1}, refit, test RMSE/MAE against a baseline, precision@10 and NDCG@10. Outputs `user_recs_top10` (unseen only), `similar_movies` (cosine on item factors), `als_model` and `metrics` |
-| Dashboard | `dashboard/app.py`: Trends, Movies & Genres, Users, Recommendations, Model and Data Quality tabs |
+| Dashboard | `dashboard/app.py`: six pages, one per stakeholder question (Overview, Content, Audience, Recommendations, Model quality, Data pipeline). Screenshots are in `docs/dashboard/` |
 
 ## 4. How to run
 **Local (Docker; Spark 3.5 / Java 17, mirroring Dataproc 2.2):**

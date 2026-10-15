@@ -237,11 +237,24 @@ table(recs[recs.userId == uid].sort_values("rank"), ["rank", "clean_title", "rel
 doc.add_heading("6. Dashboard", 1)
 doc.add_paragraph(
     "The Streamlit dashboard (dashboard/app.py) reads the Gold and model output Parquet files produced by the "
-    "Dataproc run. It shows headline KPIs (ratings, users, movies, average rating, RMSE, precision@10) and six tabs: "
-    "Trends (yearly volume, active users, genre trends, rating distribution), Movies & Genres (top movies per genre, "
-    "most-rated movies, top tags, 'because you watched' similar movies), Users (segments and activity), "
-    "Recommendations (pick a user to compare their favourites with their predicted Top-10), Model (metrics, tuning "
-    "results, error analysis) and Data Quality (Silver cleaning report). Run: streamlit run dashboard/app.py")
+    "Dataproc run. It was designed from business requirements: each page answers the question of one stakeholder "
+    "group, and every page follows the same reading order of headline numbers, then the main chart, then detail. "
+    "Chart titles state the finding rather than the metric, one accent colour marks what matters, numbers are "
+    "abbreviated for readability, and labels use plain language. Run: streamlit run dashboard/app.py")
+table(pd.DataFrame([
+    ["Overview", "Leadership", "Platform health and recommender impact"],
+    ["Content", "Content and acquisition", "Top movies per genre, genre volume vs rating, trends, tags, similar movies"],
+    ["Audience", "Growth and marketing", "Engagement segments, active users over time, rating behaviour"],
+    ["Recommendations", "Personalisation", "A user's favourites next to their predicted Top-10"],
+    ["Model quality", "Data science", "RMSE vs baseline, tuning results, error analysis"],
+    ["Data pipeline", "Data engineering", "Medallion layers, data-quality checks, Dataproc job runtimes"],
+], columns=["Page", "Audience", "What it answers"]))
+shots = sorted((ROOT / "docs" / "dashboard").glob("*.png"))
+for i, shot in enumerate(shots, 1):
+    doc.add_picture(str(shot), width=Inches(6.2))
+    p = doc.add_paragraph(f"Dashboard {i} – {shot.stem.split('_', 1)[1].replace('_', ' ').capitalize()} page")
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.runs[0].italic = True
 
 doc.add_heading("7. Cloud execution & orchestration", 1)
 doc.add_paragraph(
